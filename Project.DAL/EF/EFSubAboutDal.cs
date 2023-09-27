@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Project.DAL.EF
 {
-  public  class EFFeaturesDal : GenericRepository<Features>, IFeaturesDal
+    public class EFSubAboutDal : GenericRepository<SubAbout>, ISubAboutDal
     {
     }
 }

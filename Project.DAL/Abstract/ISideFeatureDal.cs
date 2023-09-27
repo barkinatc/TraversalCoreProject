@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project.DAL.Abstract
 {
-public    interface IFeaturesDal:IGenericDal<Features>
+   public interface ISideFeatureDal:IGenericDal<SideFeatures>
     {
     }
 }

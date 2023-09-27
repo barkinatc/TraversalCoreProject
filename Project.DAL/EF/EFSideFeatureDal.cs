@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Project.DAL.EF
 {
-  public  class EFSideFeaturesDal : GenericRepository<SideFeatures>, ISideFeaturesDal
+  public  class EFSideFeatureDal : GenericRepository<SideFeatures>, ISideFeatureDal
     {
     }
 }

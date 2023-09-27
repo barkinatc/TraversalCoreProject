@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project.Business.Abstract
 {
-    public interface ISideFeaturesService:IGenericService<SideFeatures>
+    public interface IFeatureService : IGenericService<Features>
     {
     }
 }

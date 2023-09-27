@@ -24,7 +24,7 @@ namespace Project.Business.Concrete
 
         public bool TAny(Expression<Func<About, bool>> exp)
         {
-            throw new NotImplementedException();
+           return _aboutDal.Any(exp);
         }
 
         public void TDelete(About t)
