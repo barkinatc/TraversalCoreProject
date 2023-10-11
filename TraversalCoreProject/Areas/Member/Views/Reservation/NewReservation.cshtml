@@ -1,0 +1,39 @@
+﻿@model Project.ENTITIES.Concrete.Reservation
+@{
+    ViewData["Title"] = "NewReservation";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>Yeni Reservasyon Sayfası</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label class=" col-sm-2">Lokasyon</label>
+        <select asp-for="Destination" asp-items="ViewBag.v" class="form-control">
+            <option value="">Lütfen seçiniz</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label class=" col-sm-2">Kişi Sayısı</label>
+        <input type="text" asp-for="PersonCount" class="form-control" />
+
+    </div>
+    <div class="form-group">
+        <label class=" col-sm-2">Reservasyon Tarihi</label>
+        <input asp-for="CreatedDate" type="date" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class=" col-sm-2">Eklemek istediğiniz bişey var mı ?</label>
+        <input asp-for="Description" type="text" class="form-control" />
+    </div>
+    <div>
+        <button class=" btn btn-primary">
+            Ekle
+        </button>
+    </div>
+
+</form>
+
+
+

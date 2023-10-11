@@ -5,18 +5,17 @@
 
 <!doctype html>
 <html lang="zxx">
-
-<!-- Header -->
+ 
 @await Html.PartialAsync("/Views/LayoutPartial/_HeaderPartial.cshtml")
 <body>
-    <!-- Navbar -->
-    @await Html.PartialAsync("/Views/LayoutPartial/_NavbarPartial.cshtml")
+ 
+@await Html.PartialAsync("/Views/LayoutPartial/_NavbarPartial.cshtml")
 
-    @RenderBody();
-    <!-- /main-slider -->
-    @await Html.PartialAsync("/Views/LayoutPartial/_FooterPartial.cshtml")
-    <!-- /main-slider -->
-    @await Html.PartialAsync("/Views/LayoutPartial/_ScriptsPartial.cshtml")
+@RenderBody();
+ 
+@await Html.PartialAsync("/Views/LayoutPartial/_FooterPartial.cshtml")
+ 
+@await Html.PartialAsync("/Views/LayoutPartial/_ScriptsPartial.cshtml")
 
 
 </body>

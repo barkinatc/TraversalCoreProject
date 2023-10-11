@@ -39,6 +39,7 @@ namespace Project.DAL.Abstract
         //Linq
 
         List<T> Where(Expression<Func<T, bool>> exp);
+        
 
         bool Any(Expression<Func<T, bool>> exp);
 

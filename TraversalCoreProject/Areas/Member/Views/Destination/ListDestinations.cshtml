@@ -1,0 +1,43 @@
+﻿@using Project.ENTITIES.Concrete
+@model List<Destination>
+@{
+    ViewData["Title"] = "ListDestinations";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+
+<div class="panel-body">
+    <div class="adv-table">
+        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Şehir</th>
+                    <th class="hidden-phone">Süre</th>
+                    <th class="hidden-phone">Fiyat</th>
+                    <th class="hidden-phone">Açıklama</th>
+                    
+                    <th class="hidden-phone">Detaylar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Destination item in Model)
+                {
+                    <tr class="gradeX">
+                        <td>@item.ID</td>
+                        <td>@item.City</td>
+                        <td class="hidden-phone">@item.DayNight</td>
+                        <td class="center hidden-phone">@item.Price</td>
+                        <td class="center hidden-phone">@item.Description</td>
+
+                       
+                        <td class="center hidden-phone">@Html.ActionLink("Detay", "DetailDestination", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
