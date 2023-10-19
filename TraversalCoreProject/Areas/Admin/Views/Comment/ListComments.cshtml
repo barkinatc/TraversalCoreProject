@@ -13,6 +13,10 @@
         <td>Yorum </td>
         <td>Hangi Şehir İçin Yapmış </td>
         <td>Nezaman Yapmış </td>
+        <td>Yorum Cevap </td>
+
+        <td>Sil</td>
+        <td>Yanıtla</td>
     </tr>
     @foreach (var item in Model.Comments)
     {
@@ -21,6 +25,9 @@
     <th>@item.CommentContent</th>
     <th>@item.DestinationName</th>
     <th>@item.CreatedDate</th>
+    <th>@item.CommentReply</th>
+    <th><a href="/Admin/Comment/DeleteComment/@item.ID" class="btn btn-outline-danger">Sil</a></th>
+    <th><a href="/Admin/Comment/ReplyComment/@item.ID" class="btn btn-outline-warning">Yanıtla</a></th>
 </tr>
     }
 </table>

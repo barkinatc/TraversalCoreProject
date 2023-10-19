@@ -19,6 +19,22 @@ namespace Project.Business.Concrete
             _reservationDal = reservationDal;
         }
 
+        public void acceptReservaiton(int id)
+        {
+            var reservation = _reservationDal.Find(id);
+            reservation.RezervasyonDurumu = ENTITIES.Enums.ReservationEnums.AktifRezervasyon;
+            _reservationDal.Update(reservation);
+        }
+
+        public void cancelReservation(int id)
+        {
+            var reservation = _reservationDal.Find(id);
+            reservation.RezervasyonDurumu = ENTITIES.Enums.ReservationEnums.GeçmişRezervasyon;
+            _reservationDal.Update(reservation);
+           
+
+        }
+
         public List<Reservation> getReservationsWithOthers()
         {
             return _reservationDal.getReservationsWithOthers();
@@ -27,6 +43,7 @@ namespace Project.Business.Concrete
         public void TAdd(Reservation t)
         {
             _reservationDal.Add(t);
+            
             
         }
 
@@ -37,6 +54,7 @@ namespace Project.Business.Concrete
 
         public void TDelete(Reservation t)
         {
+            
             _reservationDal.Delete(t);
 
         }

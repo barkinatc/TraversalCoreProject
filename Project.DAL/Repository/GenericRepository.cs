@@ -42,6 +42,7 @@ namespace Project.DAL.Repository
 
             item.Status = ENTITIES.Enums.DataStatus.Deleted;
             item.DeletedDate = DateTime.Now;
+            c.Update(item);    
             c.SaveChanges();
             
         }
@@ -128,7 +129,8 @@ namespace Project.DAL.Repository
         {
             using var c = new Context();
 
-            // using var c = new Context();
+            item.Status = ENTITIES.Enums.DataStatus.Updated;
+            item.ModifiedDate = DateTime.Now;
             c.Update(item);
             c.SaveChanges();
         }

@@ -1,17 +1,18 @@
 ﻿@using TraversalCoreProject.ViewModels
-@model AdminAddReservationVM
+@using Project.ENTITIES.Enums
+@model AdminUpdateReservationVM
 @{
     ViewData["Title"] = "AddReservation";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>rezervasyon Yap</h1>
+<h1>Rezervasyon Güncelleme Sayfası</h1>
 
-<form  method="post" >
+<form method="post">
     <div class="row">
 
+        @Html.HiddenFor(Model => Model.Reservation.ID)
 
-     
         <div class="mb-3 col-md-6">
             <label for="zipCode" class="form-label">Kaç Kişi</label>
             <input type="text" asp-for="Reservation.PersonCount"
@@ -25,20 +26,21 @@
         <div class="mb-3 col-md-6">
             <label class="form-label" for="country">Şehir</label>
             <select asp-for="Reservation.DestinationID" class="select2 form-select">
-                
+               <option >Şehir Seçiniz</option>
                 @foreach (var item in Model.Destinations)
                 {
-                    <option  value="@item.ID">@item.City</option>
+                    <option value="@item.ID">@item.City</option>
                 }
             </select>
         </div>
         <div class="mb-3 col-md-6">
-            <label class="form-label" for="country">Kullanıcı</label>
-            <select asp-for="Reservation.AppUserID" class="select2 form-select">
-                
-                @foreach (var item in Model.AppUsers)
+            <label class="form-label" for="country">Rezervasyon Durumu</label>
+            <select asp-for="RezervasyonDurumu" class="select2 form-select">
+                <option>Rezervasyonunun Durumu</option>
+
+                @foreach (var value in Enum.GetValues(typeof(ReservationEnums)))
                 {
-                    <option value="@item.ID">@item.Name @item.Surname</option>
+                    <option value="@value">@Enum.GetName(typeof(ReservationEnums), value)</option>
                 }
             </select>
         </div>
@@ -48,7 +50,7 @@
         </div>
     </div>
     <div class="mt-2">
-        <button type="submit" class="btn btn-primary me-2">Ekle</button>
-        
+        <button type="submit" class="btn btn-primary me-2">Güncelle</button>
+      
     </div>
 </form>

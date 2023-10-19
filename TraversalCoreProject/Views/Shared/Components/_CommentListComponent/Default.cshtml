@@ -1,5 +1,6 @@
-﻿@using Project.ENTITIES.Concrete
-@model List<Comment>
+﻿@using TraversalCoreProject.ViewModels
+
+@model List<CommentVM>
 
 <div class="comments mt-5">
     <h4 class="side-title ">yorumlar (@Model.Count)</h4>
@@ -15,7 +16,7 @@
                     <li>
                         <a href="#URL" class="name mt-0 mb-2 d-block">@item.CommentUser</a>
                         @item.CreatedDate
-                        
+
 
                     </li>
                     <li class="reply-last">
@@ -27,6 +28,26 @@
                 <p>
                     @item.CommentContent
                 </p>
+                <div class="media second mt-4 p-0 pt-2">
+                    <a class="img-circle img-circle-sm" href="#url">
+                        <img src="~/Traversal-Liberty/assets/images/c3.jpg" class="img-fluid" alt="...">
+                    </a>
+                    <div class="media-body">
+                        <ul class="time-rply mb-2">
+                            <li>
+                                <a href="#URL" class="name mt-0 mb-2 d-block">Admin</a>
+                               @item.ModifedDate
+
+                            </li>
+                            <li class="reply-last">
+                                <a href="#reply" class="reply"> Reply</a>
+                            </li>
+                        </ul>
+                        <p>
+                            @item.CommentReply
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     }

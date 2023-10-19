@@ -13,6 +13,8 @@ namespace TraversalCoreProject.Areas.Admin.Models
         public int DestinationID { get; set; }
         public string DestinationName { get; set; }
         public string CreatedDate { get; set; }
+        public string ModifedDate { get; set; }
+        public string CommentReply { get; set; }
 
         public string  Status { get; set; }
 

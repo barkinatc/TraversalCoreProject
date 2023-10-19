@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Project.ENTITIES.Concrete
+namespace TraversalCoreProject.ViewModels
 {
-    public class Comment:BaseEntity
+    public class CommentVM
     {
+        public int ID { get; set; }
+
         public string CommentUser { get; set; }
         public string CommentContent { get; set; }
         public int DestinationID { get; set; }
+
         public string CommentReply { get; set; }
 
-        //Relational prop
-
-        public virtual  Destination Destination { get; set; }
+        public string CreatedDate { get; set; }
+        public string ModifedDate { get; set; }
+        
     }
 }

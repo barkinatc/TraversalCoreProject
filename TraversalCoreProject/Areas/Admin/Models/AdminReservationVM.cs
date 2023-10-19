@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project.ENTITIES.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,8 +17,12 @@ namespace TraversalCoreProject.Areas.Admin.Models
         public int AppUserID { get; set; }
 
         public string AppUserName { get; set; }
-        public string RezervasyonDurumu { get; set; }
-        public string CreatedDate { get; set; }
+        public string AppUserSurName { get; set; }
+
+        public ReservationEnums RezervasyonDurumu { get; set; }
+        public DateTime CreatedDate { get; set; }
         public string Status { get; set; }
+        public string PhoneNo { get; set; }
+       
     }
 }
