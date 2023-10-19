@@ -1,4 +1,5 @@
-﻿using Project.DAL.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using Project.DAL.Abstract;
 using Project.DAL.Concrete;
 using Project.ENTITIES.Concrete;
 using System;
@@ -11,9 +12,15 @@ namespace Project.DAL.Repository
 {
     public class GenericRepository<T> : IGenericDal<T> where T : BaseEntity
     {
+        
+
+       
+
+        
         public void Add(T item)
         {
             using var c = new Context();
+
             c.Add(item);
             c.SaveChanges();
         }
@@ -25,12 +32,14 @@ namespace Project.DAL.Repository
         public bool Any(Expression<Func<T, bool>> exp)
         {
             using var c = new Context();
+
             return c.Set<T>().Any(exp);
         }
 
         public void Delete(T item)
         {
             using var c = new Context();
+
             item.Status = ENTITIES.Enums.DataStatus.Deleted;
             item.DeletedDate = DateTime.Now;
             c.SaveChanges();
@@ -42,6 +51,7 @@ namespace Project.DAL.Repository
         public void Destroy(T item)
         {
             using var c = new Context();
+
             c.Remove(item);
             c.SaveChanges();
         }
@@ -50,6 +60,7 @@ namespace Project.DAL.Repository
         public T Find(int id)
         {
             using var c = new Context();
+
             return c.Set<T>().Find(id);
         }
 
@@ -81,6 +92,7 @@ namespace Project.DAL.Repository
         public List<T> GetLastDatas(int number)
         {
             using var c = new Context();
+
             return c.Set<T>().OrderByDescending(x => x.CreatedDate).Take(number).ToList();
         }
 
@@ -95,9 +107,19 @@ namespace Project.DAL.Repository
             return Where(x => x.Status == ENTITIES.Enums.DataStatus.Updated);
         }
 
+        public IQueryable<T> Include(Expression<Func<T, object>> includeProperty)
+        {
+            using var c = new Context();
+
+            return c.Set<T>().Include(includeProperty);
+            
+        }
+
         public IQueryable<X> Select<X>(Expression<Func<T, X>> exp)
         {
             using var c = new Context();
+
+            //using var c = new Context();
             return c.Set<T>().Select(exp);
 
         }
@@ -105,6 +127,8 @@ namespace Project.DAL.Repository
         public void Update(T item)
         {
             using var c = new Context();
+
+            // using var c = new Context();
             c.Update(item);
             c.SaveChanges();
         }
@@ -114,6 +138,8 @@ namespace Project.DAL.Repository
         public List<T> Where(Expression<Func<T, bool>> exp)
         {
             using var c = new Context();
+
+            //using var c = new Context();
             return c.Set<T>().Where(exp).ToList();
         }
     }

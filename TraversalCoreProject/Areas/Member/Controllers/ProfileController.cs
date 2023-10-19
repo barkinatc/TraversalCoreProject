@@ -23,45 +23,82 @@ namespace TraversalCoreProject.Areas.Member.Controllers
         {
             _userManager = userManager;
         }
+        public async Task<IActionResult> MyProfile()
+        {
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            
+            ViewBag.v = values;
+            
+            return View();
+        }
         [HttpGet]
-        public async Task< IActionResult> Index()
+        public async Task< IActionResult> EditProfile()
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
 
+            
             UserEditVM userEditVM = new UserEditVM
             {
                 Name = values.Name,
                 Surname = values.Surname,
                 Mail = values.Email,
-                PhoneNo = values.PhoneNumber
+                PhoneNo = values.PhoneNumber,
+                Gender = values.Gender
+               
             };
 
             return View(userEditVM);
         }
         [HttpPost]
 
-        public async Task<IActionResult> Index(UserEditVM p)
+        public async Task<IActionResult> EditProfile(UserEditVM p)
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
-
-            if (p.Image!=null)
+           
+            if (p.Image != null )
             {
                 var resource = Directory.GetCurrentDirectory();
                 var extension = Path.GetExtension(p.Image.FileName);
-                var imagename = Guid.NewGuid() + extension;
-                var savelocation = $"{resource}/Custom/UserImages/{ imagename}";
+                var imagename = Guid.NewGuid()+ extension;
+                var savelocation = $"{resource}/wwwroot/UserImages/{imagename}";
                 var stream = new FileStream(savelocation, FileMode.Create);
                 await p.Image.CopyToAsync(stream);
                 user.ImageUrl = imagename;
             }
             user.Name = p.Name;
             user.Surname = p.Surname;
+            user.Gender = p.Gender;
+            user.Email = p.Mail;
+            //if (string.IsNullOrEmpty(user.PasswordHash))
+            //{
+
+            //}
+
+            if (string.IsNullOrEmpty(p.Password))
+            {
+                
+                ModelState.AddModelError("Password", "Lütfen parola giriniz.");
+                return View();
+            }
+            else if (string.IsNullOrEmpty(p.ConfirmPassword))
+            {
+                ModelState.AddModelError("ConfirmPassword", "Lütfen parolanızı tekrar giriniz.");
+                return View();
+            }
+            else if (p.Password != p.ConfirmPassword)
+            {
+                ModelState.AddModelError("WrongConfirmPassword", "Girdiğiniz parolalar birbirinden farklıdır.");
+                return View();
+            }
             user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, p.Password);
             var result = await _userManager.UpdateAsync(user);
+            
 
             if (result.Succeeded)
             {
-                return RedirectToAction("SignIn","Login");
+                
+                TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
+                return View();
             }
 
 

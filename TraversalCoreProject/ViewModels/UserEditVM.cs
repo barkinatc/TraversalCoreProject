@@ -17,6 +17,7 @@ namespace TraversalCoreProject.ViewModels
         public string PhoneNo { get; set; }
         public string Mail { get; set; }
         public string ImageUrl { get; set; }
+        public string Gender { get; set; }
 
         public IFormFile    Image { get; set; }
 

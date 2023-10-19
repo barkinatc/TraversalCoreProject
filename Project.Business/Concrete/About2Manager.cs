@@ -81,6 +81,11 @@ namespace Project.Business.Concrete
             return _about2Dal.GetUpdateds();
         }
 
+        public IQueryable<About2> TInclude(Expression<Func<About2, object>> includeProperty)
+        {
+            return _about2Dal.Include(includeProperty);
+        }
+
         public IQueryable<X> TSelect<X>(Expression<Func<About2, X>> exp)
         {
             return _about2Dal.Select(exp);

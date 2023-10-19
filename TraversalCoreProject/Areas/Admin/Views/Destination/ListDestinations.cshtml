@@ -1,0 +1,44 @@
+﻿@using TraversalCoreProject.Areas.Admin.Models
+@model AdminDestinationPageListVM
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1>Tur rotaları</h1>
+
+
+
+<table class="table table-hover">
+    <tr>
+        
+        <th>Şehir</th>
+        <th>Fiyat</th>
+        <th>Kapasite</th>
+        <th>Sitede Gör</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Detaylar</th>
+
+    </tr>
+    @foreach (var item in Model.Destinations)
+    {
+<tr>
+
+    <td>@item.City</td>
+    <td>@item.Price</td>
+    <td>@item.Capacity</td>
+    <td><a target="_blank" href="/Destination/DestinationDetails/@item.ID" class="btn btn-outline-dark">Sitede Gör</a></td>
+    <td><a href="/Admin/Destination/DeleteDestination/@item.ID" class="btn btn-outline-danger">Sil</a></td>
+    
+
+
+    <td><a href="/Admin/Destination/UpdateDestination/@item.ID" class="btn btn-outline-warning">Güncelle</a></td>
+
+    <td><a href="#" class="btn btn-outline-info">Detaylar</a></td>
+</tr>
+      
+    }
+    
+</table>
+
+<a target="_blank" class="btn btn-outline-primary" href="/Admin/Destination/AddDestination">Tur Rotası Ekle</a>

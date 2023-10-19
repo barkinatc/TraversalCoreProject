@@ -25,6 +25,7 @@ namespace Project.ENTITIES.Concrete
         //Relational prop
 
         public virtual List<Comment> Comments { get; set; }
+        public virtual List<Reservation> Reservations { get; set; }
 
 
     }

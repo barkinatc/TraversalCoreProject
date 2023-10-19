@@ -89,6 +89,11 @@ namespace Project.Business.Concrete
 
         }
 
+        public IQueryable<Guide> TInclude(Expression<Func<Guide, object>> includeProperty)
+        {
+            return _guideDal.Include(includeProperty);
+        }
+
         public IQueryable<X> TSelect<X>(Expression<Func<Guide, X>> exp)
         {
             return _guideDal.Select(exp);

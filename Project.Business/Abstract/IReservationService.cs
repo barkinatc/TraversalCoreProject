@@ -9,5 +9,6 @@ namespace Project.Business.Abstract
 {
     public interface IReservationService : IGenericService<Reservation>
     {
+        List<Reservation> getReservationsWithOthers();
     }
 }

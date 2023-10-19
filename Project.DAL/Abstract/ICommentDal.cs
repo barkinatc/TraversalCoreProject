@@ -9,5 +9,6 @@ namespace Project.DAL.Abstract
 {
   public  interface ICommentDal :IGenericDal<Comment>
     {
+        List<Comment> GetCommentsWithDestinations();
     }
 }

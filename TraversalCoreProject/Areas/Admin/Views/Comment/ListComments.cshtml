@@ -1,0 +1,26 @@
+﻿@using TraversalCoreProject.Areas.Admin.Models
+@model AdminCommentPageListVM
+@{
+    ViewData["Title"] = "ListComments";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Sitede Yapılan Yorumlar</h1>
+
+<table class=" table table-flush-spacing">
+    <tr>
+        <td>Yorum Sahibi</td>
+        <td>Yorum </td>
+        <td>Hangi Şehir İçin Yapmış </td>
+        <td>Nezaman Yapmış </td>
+    </tr>
+    @foreach (var item in Model.Comments)
+    {
+<tr>
+    <th>@item.CommentUser</th>
+    <th>@item.CommentContent</th>
+    <th>@item.DestinationName</th>
+    <th>@item.CreatedDate</th>
+</tr>
+    }
+</table>

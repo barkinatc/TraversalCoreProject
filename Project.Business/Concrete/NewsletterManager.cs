@@ -85,6 +85,11 @@ public void TAdd(Newsletter t)
 
         }
 
+        public IQueryable<Newsletter> TInclude(Expression<Func<Newsletter, object>> includeProperty)
+        {
+            return _newsletterDal.Include(includeProperty);
+        }
+
         public IQueryable<X> TSelect<X>(Expression<Func<Newsletter, X>> exp)
         {
             return _newsletterDal.Select(exp);

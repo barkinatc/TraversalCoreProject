@@ -90,6 +90,11 @@ namespace Project.Business.Concrete
 
         }
 
+        public IQueryable<Testimonial> TInclude(Expression<Func<Testimonial, object>> includeProperty)
+        {
+            return _testimonialDal.Include(includeProperty);
+        }
+
         public IQueryable<X> TSelect<X>(Expression<Func<Testimonial, X>> exp)
         {
             return _testimonialDal.Select(exp);

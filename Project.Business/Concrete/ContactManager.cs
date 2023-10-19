@@ -82,6 +82,11 @@ namespace Project.Business.Concrete
             return _contactDal.GetUpdateds();
         }
 
+        public IQueryable<Contact> TInclude(Expression<Func<Contact, object>> includeProperty)
+        {
+            return _contactDal.Include(includeProperty);
+        }
+
         public IQueryable<X> TSelect<X>(Expression<Func<Contact, X>> exp)
         {
             return _contactDal.Select(exp);

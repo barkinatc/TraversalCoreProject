@@ -90,6 +90,11 @@ namespace Project.Business.Concrete
 
         }
 
+        public IQueryable<SubAbout> TInclude(Expression<Func<SubAbout, object>> includeProperty)
+        {
+            return _subAboutDal.Include(includeProperty);
+        }
+
         public IQueryable<X> TSelect<X>(Expression<Func<SubAbout, X>> exp)
         {
             return _subAboutDal.Select(exp);

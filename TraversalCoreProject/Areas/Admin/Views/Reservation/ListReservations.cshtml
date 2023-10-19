@@ -1,0 +1,41 @@
+﻿@using TraversalCoreProject.Areas.Admin.Models
+@model AdminReservationPageListVM
+@{
+    ViewData["Title"] = "ListReservations";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Rezervasyonlar</h1>
+
+<table class=" table table-responsive-lg">
+    <tr>
+        <td>Rezervasyon Şehri</td>
+        <td>Rezervasyon Sahibi</td>
+        <td>Kaç Kişilik</td>
+        <td>Rezervasyon Tarihi</td>
+        <td>Rezervsayon Durumu</td>
+        <td>Açıklama</td>
+        <th>Sil</th>
+        <th>Güncelle</th>
+
+
+    </tr>
+    @foreach (var item in Model.Reservations)
+    {
+<tr>
+    <th>@item.DestinationName</th>
+    <th>@item.AppUserName</th>
+    <th>@item.PersonCount</th>
+    <th>@item.CreatedDate</th>
+    <th>@item.RezervasyonDurumu</th>
+    <th>@item.Description</th>
+    <th><a href="/Admin/Reservation/DeleteReservation/@item.ID" class="btn btn-outline-danger">İptal Et</a></th>
+
+
+
+    <th><a href="/Admin/Reservation/UpdateReservation/@item.ID" class="btn btn-outline-warning">Güncelle</a></th>
+</tr>
+    }
+</table>
+
+<a target="_blank" class="btn btn-outline-primary" href="/Admin/Reservation/AddReservation">Rezervasyon Yarat</a>

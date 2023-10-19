@@ -19,6 +19,11 @@ namespace Project.Business.Concrete
             _reservationDal = reservationDal;
         }
 
+        public List<Reservation> getReservationsWithOthers()
+        {
+            return _reservationDal.getReservationsWithOthers();
+        }
+
         public void TAdd(Reservation t)
         {
             _reservationDal.Add(t);
@@ -88,6 +93,11 @@ namespace Project.Business.Concrete
         {
             return _reservationDal.GetUpdateds();
 
+        }
+
+        public IQueryable<Reservation> TInclude(Expression<Func<Reservation, object>> includeProperty)
+        {
+            return _reservationDal.Include(includeProperty);
         }
 
         public IQueryable<X> TSelect<X>(Expression<Func<Reservation, X>> exp)

@@ -46,6 +46,7 @@ namespace Project.DAL.Abstract
         T FirstOrDefault(Expression<Func<T, bool>> exp);
 
         IQueryable<X> Select<X>(Expression<Func<T, X>> exp);
+        IQueryable<T> Include(Expression<Func<T, object>> includeProperty);
 
         //Find Command
 

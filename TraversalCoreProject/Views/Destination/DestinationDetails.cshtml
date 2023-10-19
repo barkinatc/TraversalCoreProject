@@ -1,4 +1,5 @@
-﻿@model Project.ENTITIES.Concrete.Destination;
+﻿@using TraversalCoreProject.ViewModels
+@model Project.ENTITIES.Concrete.Destination;
 @{
     ViewData["Title"] = "DestinationDetails";
     Layout = "~/Views/Shared/_UILayout.cshtml";
@@ -186,8 +187,15 @@
                 <!--//author-card-->
 
 
-                @await Component.InvokeAsync("_CommentListComponent", new {id=ViewBag.i })
-                @await Html.PartialAsync("~/Views/Comment/AddComment.cshtml");
+                @await Component.InvokeAsync("_CommentListComponent", new { id = ViewBag.i })
+
+                @{ 
+                    var addCommentVM = new AddCommentPartialVM
+                    {
+                        DestinationID = Model.ID
+                    };
+                }
+                @await Html.PartialAsync("~/Views/Comment/AddComment.cshtml",addCommentVM);
 
 
 

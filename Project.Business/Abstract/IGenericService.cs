@@ -30,6 +30,7 @@ namespace Project.Business.Abstract
         T TFirstOrDefault(Expression<Func<T, bool>> exp);
 
         IQueryable<X> TSelect<X>(Expression<Func<T, X>> exp);
+        IQueryable<T> TInclude(Expression<Func<T, object>> includeProperty);
 
         //Find Command
 

@@ -106,5 +106,15 @@ namespace Project.Business.Concrete
             return _commentDal.Where(x => x.DestinationID == id);
         }
 
+        public IQueryable<Comment> TInclude(Expression<Func<Comment, object>> includeProperty)
+        {
+            return _commentDal.Include(includeProperty);
+            
+        }
+
+        public List<Comment> TGetCommentsWithDestinations()
+        {
+            return _commentDal.GetCommentsWithDestinations();
+        }
     }
 }

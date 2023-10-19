@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Project.Business.Abstract;
 using Project.Business.Concrete;
 using Project.DAL.EF;
 using System;
@@ -13,12 +14,18 @@ namespace TraversalCoreProject.Areas.Member.Controllers
     [AllowAnonymous]
     public class DestinationController : Controller
     {
-        
 
-        DestinationManager destinationManager = new DestinationManager(new EFDestinationDal());
+
+       private readonly IDestinationService _destinationService;
+
+        public DestinationController(IDestinationService destinationService)
+        {
+            _destinationService = destinationService;
+        }
+
         public IActionResult ListDestinations()
         {
-            var values = destinationManager.TGetList();
+            var values = _destinationService.TGetList();
             return View(values);
         }
     }

@@ -549,7 +549,10 @@ namespace Project.DAL.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Destination")
+                    b.Property<int>("DestinationID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DestinationName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -558,12 +561,17 @@ namespace Project.DAL.Migrations
                     b.Property<string>("PersonCount")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RezervasyonDurumu")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("AppUserID");
+
+                    b.HasIndex("DestinationID");
 
                     b.ToTable("Reservations");
                 });
@@ -734,7 +742,15 @@ namespace Project.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Project.ENTITIES.Concrete.Destination", "Destination")
+                        .WithMany("Reservations")
+                        .HasForeignKey("DestinationID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AppUser");
+
+                    b.Navigation("Destination");
                 });
 
             modelBuilder.Entity("Project.ENTITIES.Concrete.AppUser", b =>
@@ -745,6 +761,8 @@ namespace Project.DAL.Migrations
             modelBuilder.Entity("Project.ENTITIES.Concrete.Destination", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }
