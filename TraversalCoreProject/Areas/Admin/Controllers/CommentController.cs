@@ -42,9 +42,21 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
         }
         public IActionResult DeleteComment(int id)
         {
-            _commentService.TDestroy(_commentService.TFind(id));
+            var comment = _commentService.TFind(id);
+            if (comment!=null)
+            {
+                _commentService.TDestroy(comment);
+                TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
+
+                return Redirect("/Admin/Comment/ListComments");
+
+
+            }
+            ModelState.AddModelError("Hata", "Islem basarisiz olmustur.");
 
             return Redirect("/Admin/Comment/ListComments");
+
+
         }
         [HttpGet]
         public IActionResult ReplyComment(int id)
@@ -57,8 +69,16 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
         public IActionResult ReplyComment(AdminCommentVM p)
         {
             Comment toBeUpdated = _commentService.TFind(p.ID);
-            toBeUpdated.CommentReply = p.CommentReply;
-            _commentService.TUpdate(toBeUpdated);
+            if (toBeUpdated !=null)
+            {
+                toBeUpdated.CommentReply = p.CommentReply;
+                _commentService.TUpdate(toBeUpdated);
+                TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
+
+                return Redirect("/Admin/Comment/ListComments");
+            }
+            ModelState.AddModelError("Hata", "Islem basarisiz olmustur.");
+
             return Redirect("/Admin/Comment/ListComments");
         }
     }

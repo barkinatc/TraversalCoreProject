@@ -20,14 +20,45 @@
     </tr>
     @foreach (var item in Model.Comments)
     {
-<tr>
-    <th>@item.CommentUser</th>
-    <th>@item.CommentContent</th>
-    <th>@item.DestinationName</th>
-    <th>@item.CreatedDate</th>
-    <th>@item.CommentReply</th>
-    <th><a href="/Admin/Comment/DeleteComment/@item.ID" class="btn btn-outline-danger">Sil</a></th>
-    <th><a href="/Admin/Comment/ReplyComment/@item.ID" class="btn btn-outline-warning">Yanıtla</a></th>
-</tr>
+        <tr>
+            <th>@item.CommentUser</th>
+            <th>@item.CommentContent</th>
+            <th>@item.DestinationName</th>
+            <th>@item.CreatedDate</th>
+            @if (item.CommentReply == null)
+            {
+                <th>Cevaplanmamış</th>
+            }
+            else
+            {
+                <th>@item.CommentReply</th>
+            }
+
+            <th><a href="/Admin/Comment/DeleteComment/@item.ID" class="btn btn-outline-danger">Sil</a></th>
+            <th><a href="/Admin/Comment/ReplyComment/@item.ID" class="btn btn-outline-warning">Yanıtla</a></th>
+        </tr>
     }
 </table>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Hata!',
+            text: 'Aşağıdaki hataları düzeltiniz:',
+            html: '@Html.Raw(string.Join("<br/>", ViewData.ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)))'
+        });
+    </script>
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Başarılı!',
+            text: '@TempData["SuccessMessage"]'
+        });
+
+    </script>
+}

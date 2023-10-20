@@ -1,0 +1,29 @@
+﻿@model AdminGuideVM
+@{
+    ViewData["Title"] = "AddGuide";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Tur Rehberi Ekleme Sayfası</h1>
+
+<form method="post">
+    <div class="row">
+
+
+
+        <div class="mb-3 col-md-6">
+            <label for="zipCode" class="form-label">İsim Soyİsim</label>
+            <input type="text" asp-for="Name"
+                   class="form-control" />
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="zipCode" class="form-label">Açıklama</label>
+            <input type="text" asp-for="Description"
+                   class="form-control" />
+        </div>
+        </div>
+    <div class="mt-2">
+        <button type="submit" class="btn btn-primary me-2">Ekle</button>
+
+    </div>
+</form>

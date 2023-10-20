@@ -1,4 +1,5 @@
 ﻿using Project.ENTITIES.Concrete;
+using Project.ENTITIES.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Project.DAL.Abstract
 {
-   public interface IGenericDal<T> where T: BaseEntity
+   public interface IGenericDal<T> where T: IEntity
     {
         List<T> GetAll();
 

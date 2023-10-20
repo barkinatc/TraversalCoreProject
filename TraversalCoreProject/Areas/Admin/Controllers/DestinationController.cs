@@ -66,13 +66,13 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
                 };
                 _destinationService.TAdd(destination);
                 //image
-
+                TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
                 return Redirect("/Admin/Destination/ListDestinations");
             }
 
 
             //_destinationManager.TAdd(p);
-
+            ModelState.AddModelError("Hata", "Islem basarisiz olmustur.");
             return Redirect("/Admin/Destination/ListDestinations");
            
         }
@@ -92,21 +92,30 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult UpdateDestination(AdminDestinationVM destinationVM)
         {
+            
+                Destination toBeUpdated = _destinationService.TFind(destinationVM.ID);
+            if (toBeUpdated!=null)
+            {
+                toBeUpdated.ID = destinationVM.ID;
+                toBeUpdated.City = destinationVM.City;
+                toBeUpdated.DayNight = destinationVM.DayNight;
+                toBeUpdated.Description = destinationVM.Description;
+                toBeUpdated.Price = destinationVM.Price;
 
-            Destination toBeUpdated = _destinationService.TFind(destinationVM.ID);
-            toBeUpdated.ID = destinationVM.ID;
-            toBeUpdated.City = destinationVM.City;
-            toBeUpdated.DayNight = destinationVM.DayNight;
-            toBeUpdated.Description = destinationVM.Description;
-            toBeUpdated.Price = destinationVM.Price;
-
-            _destinationService.TUpdate(toBeUpdated);
+                _destinationService.TUpdate(toBeUpdated);
+                TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
+                return Redirect("/Admin/Destination/ListDestinations");
+            }
+               
+            
+            ModelState.AddModelError("Hata", "Islem basarisiz olmustur.");
             return Redirect("/Admin/Destination/ListDestinations");
         }
 
         public IActionResult DeleteDestination(int id )
         {
             _destinationService.TDestroy(_destinationService.TFind(id));
+            TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
             return Redirect("/Admin/Destination/ListDestinations");
         }
     }

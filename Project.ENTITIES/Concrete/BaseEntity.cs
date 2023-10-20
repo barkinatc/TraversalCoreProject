@@ -1,4 +1,5 @@
 ﻿using Project.ENTITIES.Enums;
+using Project.ENTITIES.Interface;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Project.ENTITIES.Concrete
 {
-   public abstract class BaseEntity
+   public abstract class BaseEntity:IEntity
     {
         [Key]
         public int ID { get; set; }

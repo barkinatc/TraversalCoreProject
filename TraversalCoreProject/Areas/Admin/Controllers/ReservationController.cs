@@ -23,7 +23,7 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
             _reservationService = reservationService;
             _userManager = userManager;
             _destinationService = destinationService;
-           
+
             _destinations = _destinationService.TGetList().Select(x => new AdminDestinationVM
             {
 
@@ -32,8 +32,8 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
 
             }).ToList();
         }
-        List<AdminDestinationVM> _destinations; 
-        
+        List<AdminDestinationVM> _destinations;
+
         public IActionResult ListReservations()
         {
             var reservationList = _reservationService.getReservationsWithOthers();
@@ -70,7 +70,7 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
                     Name = x.Name,
                     Surname = x.Surname
                 }).ToList(),
-                Destinations =_destinations
+                Destinations = _destinations
 
 
             };
@@ -100,19 +100,31 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
 
 
                 _reservationService.TAdd(reservation);
-
+                TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
                 return Redirect("/Admin/Reservation/ListReservations");
             }
+            ModelState.AddModelError("Hata", "Islem basarisiz olmustur.");
             return View();
         }
         public IActionResult DeleteReservation(int id)
         {
-            _reservationService.cancelReservation(id);
-
-            _reservationService.TDelete(_reservationService.TFind(id));
 
 
 
+            var user = _reservationService.TFind(id);
+            if (user != null)
+            {
+                _reservationService.TDelete(user);
+                _reservationService.cancelReservation(id);
+                TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
+
+                return Redirect("/Admin/Reservation/ListReservations");
+
+            }
+
+
+
+            ModelState.AddModelError("Hata", "Islem basarisiz olmustur.");
 
             return Redirect("/Admin/Reservation/ListReservations");
         }
@@ -121,7 +133,7 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
 
         public IActionResult UpdateReservation(int id)
         {
-            AdminUpdateReservationVM updateVM = new AdminUpdateReservationVM 
+            AdminUpdateReservationVM updateVM = new AdminUpdateReservationVM
             {
                 Destinations = _destinations,
                 Reservation = _reservationService.TWhere(x => x.ID == id).Select(x => new AdminReservationVM
@@ -132,31 +144,43 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
                     DestinationID = x.DestinationID,
                     DestinationName = x.DestinationName,
                     PersonCount = x.PersonCount,
-                    RezervasyonDurumu =x.RezervasyonDurumu
-                    
-                  
+                    RezervasyonDurumu = x.RezervasyonDurumu
+
+
 
 
                 }).FirstOrDefault()
             };
-           
+
             return View(updateVM);
         }
         [HttpPost]
         public IActionResult UpdateReservation(AdminUpdateReservationVM p)
         {
+
             Reservation toBeUpdated = _reservationService.TFind(p.Reservation.ID);
-            toBeUpdated.ID = p.Reservation.ID;
-            toBeUpdated.RezervasyonDurumu = p.RezervasyonDurumu;
-            toBeUpdated.PersonCount = p.Reservation.PersonCount;
-            toBeUpdated.DestinationID = p.Reservation.DestinationID;
-            toBeUpdated.DestinationName = p.Reservation.DestinationName;
-            toBeUpdated.CreatedDate = p.Reservation.CreatedDate;
-            toBeUpdated.Description = p.Reservation.Description;
-            _reservationService.TUpdate(toBeUpdated);
+            if (toBeUpdated != null)
+            {
+                toBeUpdated.ID = p.Reservation.ID;
+                toBeUpdated.RezervasyonDurumu = p.RezervasyonDurumu;
+                toBeUpdated.PersonCount = p.Reservation.PersonCount;
+                toBeUpdated.DestinationID = p.Reservation.DestinationID;
+                toBeUpdated.DestinationName = p.Reservation.DestinationName;
+                toBeUpdated.CreatedDate = p.Reservation.CreatedDate;
+                toBeUpdated.Description = p.Reservation.Description;
+                _reservationService.TUpdate(toBeUpdated);
+                TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
+
+                return Redirect("/Admin/Reservation/ListReservations");
+            }
+            ModelState.AddModelError("Hata", "Islem basarisiz olmustur.");
 
             return Redirect("/Admin/Reservation/ListReservations");
         }
-        
+
+
+
     }
+
 }
+

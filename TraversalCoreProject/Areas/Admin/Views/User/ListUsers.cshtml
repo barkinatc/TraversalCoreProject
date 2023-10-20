@@ -1,34 +1,40 @@
-﻿@model List<AdminGuideVM>
+﻿@model List<AdminAppUserVM>
 @{
-    ViewData["Title"] = "ListGuides";
+    ViewData["Title"] = "ListUsers";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Tur Rehberleri</h1>
-
+<h1>Üyelerimiz</h1>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <table class=" table table-bordered">
     <tr>
         <td>#</td>
-        <td>İsim Soyisim</td>
-        <td>Açıklama</td>
-        <td>Durum</td>
+        <td>Kullanıcı Adı</td>
+        <td>İsim</td>
+        <td>Soy İsim</td>
+        <td>Telefon Numarası</td>
+        <td>Mail</td>
+        <td>Cinsiyet</td>
+
         <td>Sil</td>
-        <td>Güncelle</td>
+       
     </tr>
     @foreach (var item in Model)
     {
         <tr>
             <th>@item.ID</th>
+            <th>@item.UserName</th>
             <th>@item.Name</th>
-            <th>@item.Description</th>
-            <th>@item.Status</th>
-            <th><a href="/Admin/Guide/DeleteGuide/@item.ID" class="btn btn-outline-danger">Sil</a></th>
-            <th><a href="/Admin/Guide/UpdateGuide/@item.ID" class="btn btn-outline-warning">Güncelle</a></th>
+            <th>@item.Surname</th>
+            <th>@item.PhoneNo</th>
+            <th>@item.Email</th>
+            <th>@item.Gender</th>
+
+            <th><a href="/Admin/User/DeleteUser/@item.ID" class="btn btn-outline-danger">Siteden Engelle</a></th>
+
         </tr>
     }
 </table>
-<a target="_blank" class="btn btn-outline-primary" href="/Admin/Guide/AddGuide">Tur Rehberi Yarat</a>
-
 @if (!ViewData.ModelState.IsValid)
 {
     <script>

@@ -2,6 +2,7 @@
 using Project.DAL.Abstract;
 using Project.DAL.Concrete;
 using Project.ENTITIES.Concrete;
+using Project.ENTITIES.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Linq.Expressions;
 
 namespace Project.DAL.Repository
 {
-    public class GenericRepository<T> : IGenericDal<T> where T : BaseEntity
+    public class GenericRepository<T> : IGenericDal<T> where T : class,IEntity
     {
         
 

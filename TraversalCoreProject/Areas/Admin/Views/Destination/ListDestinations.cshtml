@@ -10,35 +10,57 @@
 
 <table class="table table-hover">
     <tr>
-        
+
         <th>Şehir</th>
         <th>Fiyat</th>
         <th>Kapasite</th>
         <th>Sitede Gör</th>
         <th>Sil</th>
         <th>Güncelle</th>
-        <th>Detaylar</th>
+
 
     </tr>
     @foreach (var item in Model.Destinations)
     {
-<tr>
+        <tr>
 
-    <td>@item.City</td>
-    <td>@item.Price</td>
-    <td>@item.Capacity</td>
-    <td><a target="_blank" href="/Destination/DestinationDetails/@item.ID" class="btn btn-outline-dark">Sitede Gör</a></td>
-    <td><a href="/Admin/Destination/DeleteDestination/@item.ID" class="btn btn-outline-danger">Sil</a></td>
-    
+            <td>@item.City</td>
+            <td>@item.Price</td>
+            <td>@item.Capacity</td>
+            <td><a target="_blank" href="/Destination/DestinationDetails/@item.ID" class="btn btn-outline-dark">Sitede Gör</a></td>
+            <td><a href="/Admin/Destination/DeleteDestination/@item.ID" class="btn btn-outline-danger">Sil</a></td>
 
 
-    <td><a href="/Admin/Destination/UpdateDestination/@item.ID" class="btn btn-outline-warning">Güncelle</a></td>
 
-    <td><a href="#" class="btn btn-outline-info">Detaylar</a></td>
-</tr>
-      
+            <td><a href="/Admin/Destination/UpdateDestination/@item.ID" class="btn btn-outline-warning">Güncelle</a></td>
+
+
+        </tr>
+
     }
-    
+
 </table>
 
 <a target="_blank" class="btn btn-outline-primary" href="/Admin/Destination/AddDestination">Tur Rotası Ekle</a>
+@if (!ViewData.ModelState.IsValid)
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Hata!',
+            text: 'Aşağıdaki hataları düzeltiniz:',
+            html: '@Html.Raw(string.Join("<br/>", ViewData.ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)))'
+        });
+    </script>
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Başarılı!',
+            text: '@TempData["SuccessMessage"]'
+        });
+
+    </script>
+}
