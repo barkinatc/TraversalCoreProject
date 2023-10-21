@@ -1,0 +1,33 @@
+﻿@model List<AdminReservationVM>
+@{
+    ViewData["Title"] = "GetReservationHistory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Üyenin Yaptırdığı Rezervasyonlar</h1>
+
+@if (Model != null)
+{
+    <table class=" table table-responsive">
+        <tr>
+            <td>#</td>
+            <td>Şehir</td>
+            <td>Rezervasyon Durumu</td>
+            <td>Rezervasyon Tarihi</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.ID</th>
+                <th>@item.DestinationName</th>
+                <th>@item.RezervasyonDurumu</th>
+                <th>@item.CreatedDate</th>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <h1>Bu kullanıcının hiç rezervasyonu bulunmamaktadır</h1>
+}
+

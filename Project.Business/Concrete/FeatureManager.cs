@@ -59,6 +59,11 @@ namespace Project.Business.Concrete
 
         }
 
+        public IQueryable<Features> TGetAllAsQueryable()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Features> TGetFirstDatas(int number)
         {
             return _featuresDal.GetFirstDatas(number);

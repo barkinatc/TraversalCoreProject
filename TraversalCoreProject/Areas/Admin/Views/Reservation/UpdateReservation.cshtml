@@ -26,12 +26,13 @@
         <div class="mb-3 col-md-6">
             <label class="form-label" for="country">Şehir</label>
             <select asp-for="Reservation.DestinationID" class="select2 form-select">
-               <option >Şehir Seçiniz</option>
+                <option>Şehir Seçiniz</option>
                 @foreach (var item in Model.Destinations)
                 {
                     <option value="@item.ID">@item.City</option>
                 }
             </select>
+            <input type="hidden" asp-for="Reservation.DestinationName" />
         </div>
         <div class="mb-3 col-md-6">
             <label class="form-label" for="country">Rezervasyon Durumu</label>
@@ -54,3 +55,4 @@
       
     </div>
 </form>
+

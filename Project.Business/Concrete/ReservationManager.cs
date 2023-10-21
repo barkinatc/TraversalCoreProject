@@ -83,6 +83,11 @@ namespace Project.Business.Concrete
 
         }
 
+        public IQueryable<Reservation> TGetAllAsQueryable()
+        {
+            return _reservationDal.GetAllAsQueryable();
+        }
+
         public List<Reservation> TGetFirstDatas(int number)
         {
             return _reservationDal.GetFirstDatas(number);

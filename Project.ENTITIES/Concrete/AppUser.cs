@@ -11,7 +11,6 @@ namespace Project.ENTITIES.Concrete
 {
     public class AppUser:IdentityUser<int>,IEntity
     {
-      
         public int ID { get; set; }
         public string ImageUrl { get; set; }
         public string Name { get; set; }

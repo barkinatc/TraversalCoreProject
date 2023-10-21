@@ -1,4 +1,4 @@
-﻿@model List<Reservation>
+﻿@model List<MemberReservationVM>
 @{
     ViewData["Title"] = "ListReservations";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
@@ -26,7 +26,7 @@
         {
             <tr>
                 <td>@item.ID</td>
-                <td>@item.Destination</td>
+                <td>@item.DestinationName</td>
                 <td>@item.PersonCount</td>
                 <td>@item.CreatedDate</td>
                 <td>@item.RezervasyonDurumu</td>

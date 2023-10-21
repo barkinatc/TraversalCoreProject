@@ -55,6 +55,11 @@ namespace Project.Business.Concrete
             return _about2Dal.GetActives();
         }
 
+        public IQueryable<About2> TGetAllAsQueryable()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<About2> TGetFirstDatas(int number)
         {
           return  _about2Dal.GetFirstDatas(number);

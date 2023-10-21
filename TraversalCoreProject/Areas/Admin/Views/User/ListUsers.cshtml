@@ -17,22 +17,26 @@
         <td>Cinsiyet</td>
 
         <td>Sil</td>
-       
+        <td>Tur Geçmişi</td>
+        <td>Yaptığı Yorumlar</td>
+
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
-            <th>@item.ID</th>
-            <th>@item.UserName</th>
-            <th>@item.Name</th>
-            <th>@item.Surname</th>
-            <th>@item.PhoneNo</th>
-            <th>@item.Email</th>
-            <th>@item.Gender</th>
+<tr>
+    <th>@item.ID</th>
+    <th>@item.UserName</th>
+    <th>@item.Name</th>
+    <th>@item.Surname</th>
+    <th>@item.PhoneNo</th>
+    <th>@item.Email</th>
+    <th>@item.Gender</th>
 
-            <th><a href="/Admin/User/DeleteUser/@item.ID" class="btn btn-outline-danger">Siteden Engelle</a></th>
+    <th><a href="/Admin/User/DeleteUser/@item.ID" class="btn btn-outline-danger">Siteden Engelle</a></th>
+    <th><a href="/Admin/User/GetReservationHistory/@item.ID" class="btn btn-outline-info">Tur Geçmişi</a></th>
+    <th><a href="/Admin/User/GetComments/@item.ID" class="btn btn-outline-primary">Yaptığı Yorumlar</a></th>
 
-        </tr>
+</tr>
     }
 </table>
 @if (!ViewData.ModelState.IsValid)

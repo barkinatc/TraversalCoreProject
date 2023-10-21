@@ -57,6 +57,11 @@ namespace Project.Business.Concrete
 
         }
 
+        public IQueryable<Contact> TGetAllAsQueryable()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Contact> TGetFirstDatas(int number)
         {
             return _contactDal.GetFirstDatas(number);

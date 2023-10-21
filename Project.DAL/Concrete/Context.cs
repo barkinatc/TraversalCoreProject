@@ -14,13 +14,18 @@ namespace Project.DAL.Concrete
        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=.;database=TraversalCoreDB; integrated security = true;");
+            optionsBuilder.UseSqlServer("server=.;database=TraversalCoreDB3; integrated security = true;");
         }
         //private readonly Context _context;
         //public Context(Context context)
         //{
         //    _context = context;
         //}
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<AppUser>().Ignore(x => x.ID);
+        }
         public DbSet<About> Abouts { get; set; }
         public DbSet<About2> Abouts2 { get; set; }
         public DbSet<Contact> Contacts { get; set; }

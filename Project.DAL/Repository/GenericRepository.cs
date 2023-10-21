@@ -84,6 +84,12 @@ namespace Project.DAL.Repository
             using var c = new Context();
             return c.Set<T>().ToList();
         }
+        public IQueryable<T> GetAllAsQueryable()
+        {
+            var c = new Context(); // Context'in yönetimi hakkında yukarıdaki uyarıları dikkate alın.
+            return c.Set<T>().AsQueryable();
+        }
+
 
         public List<T> GetFirstDatas(int number)
         {

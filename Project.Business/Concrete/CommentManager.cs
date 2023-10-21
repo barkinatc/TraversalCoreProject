@@ -116,5 +116,10 @@ namespace Project.Business.Concrete
         {
             return _commentDal.GetCommentsWithDestinations();
         }
+
+        public IQueryable<Comment> TGetAllAsQueryable()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

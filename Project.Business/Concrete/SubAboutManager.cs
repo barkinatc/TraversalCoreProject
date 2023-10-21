@@ -60,6 +60,11 @@ namespace Project.Business.Concrete
 
         }
 
+        public IQueryable<SubAbout> TGetAllAsQueryable()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<SubAbout> TGetFirstDatas(int number)
         {
             return _subAboutDal.GetFirstDatas(number);

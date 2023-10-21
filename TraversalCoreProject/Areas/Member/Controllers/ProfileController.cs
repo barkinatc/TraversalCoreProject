@@ -69,6 +69,7 @@ namespace TraversalCoreProject.Areas.Member.Controllers
             user.Surname = p.Surname;
             user.Gender = p.Gender;
             user.Email = p.Mail;
+            user.PhoneNumber = p.PhoneNo;
             //if (string.IsNullOrEmpty(user.PasswordHash))
             //{
 

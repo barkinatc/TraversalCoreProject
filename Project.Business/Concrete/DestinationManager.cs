@@ -53,6 +53,11 @@ namespace Project.Business.Concrete
             return _destinationDal.GetActives();
         }
 
+        public IQueryable<Destination> TGetAllAsQueryable()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Destination> TGetFirstDatas(int number)
         {
             return _destinationDal.GetFirstDatas(number);

@@ -21,6 +21,7 @@ namespace Project.Business.Abstract
         List<T> TGetPasives();
 
         List<T> TGetUpdatedes();
+        IQueryable<T> TGetAllAsQueryable();
 
 
         List<T> TWhere(Expression<Func<T, bool>> exp);

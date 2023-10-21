@@ -60,6 +60,11 @@ namespace Project.Business.Concrete
 
         }
 
+        public IQueryable<Testimonial> TGetAllAsQueryable()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Testimonial> TGetFirstDatas(int number)
         {
             return _testimonialDal.GetFirstDatas(number);

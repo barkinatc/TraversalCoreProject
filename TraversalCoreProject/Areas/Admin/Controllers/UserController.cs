@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Project.Business.Abstract;
 using Project.ENTITIES.Concrete;
 using System;
 using System.Collections.Generic;
@@ -12,16 +13,18 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
     [Area("Admin")]
     public class UserController : Controller
     {
-        UserManager<AppUser> _userManager;
+        IAppUserService _appUserService;
+        IReservationService _rezervationService;
 
-        public UserController(UserManager<AppUser> userManager)
+        public UserController(IAppUserService appUserService, IReservationService rezervationService)
         {
-            _userManager = userManager;
+            _appUserService = appUserService;
+            _rezervationService = rezervationService;
         }
 
         public IActionResult ListUsers()
         {
-            List<AdminAppUserVM> users = _userManager.Users.Select(x => new AdminAppUserVM
+            List<AdminAppUserVM> users = _appUserService.TGetList().Select(x => new AdminAppUserVM
 
             {
                 ID = x.Id,
@@ -37,23 +40,50 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
             return View(users);
         }
 
-        public async Task<IActionResult> DeleteUser(int id)
+        public IActionResult DeleteUser(int id)
         {
-           var user= await (_userManager.FindByIdAsync(id.ToString()));
-            if (user ==null)
+            //var user= await (_userManager.FindByIdAsync(id.ToString()));
+            // if (user ==null)
+            // {
+            //     return View();
+            // }
+            // var result = await _userManager.DeleteAsync(user);
+            // if (result.Succeeded)
+            // {
+            //     TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
+            //     return Redirect("/Admin/User/ListUsers");
+
+            // }
+            // ModelState.AddModelError("User", "Kullanıcı Silinemedi.");
+            // //HATA mesajı çıkartıcam
+
+            var user = _appUserService.TFind( id);
+
+            if (user!=null)
             {
-                return View();
-            }
-            var result = await _userManager.DeleteAsync(user);
-            if (result.Succeeded)
-            {
+                _appUserService.TDelete(user);
                 TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
                 return Redirect("/Admin/User/ListUsers");
 
             }
             ModelState.AddModelError("User", "Kullanıcı Silinemedi.");
-            //HATA mesajı çıkartıcam
             return View();
+        }
+        public IActionResult GetReservationHistory(int id)
+        {
+            List<AdminReservationVM> values = _rezervationService.TGetList().Where(x => x.AppUserID == id).Select(x => new AdminReservationVM
+            {
+                ID = x.ID,
+                DestinationID = x.DestinationID,
+                DestinationName =x.Destination.City,
+                Description = x.Description,
+                //AppUserName = x.AppUser.Name,
+                //AppUserSurName = x.AppUser.Surname,
+                RezervasyonDurumu = x.RezervasyonDurumu,
+                CreatedDate = x.CreatedDate
+
+            }).ToList();
+            return View(values);
         }
     }
 }

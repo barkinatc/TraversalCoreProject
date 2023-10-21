@@ -10,7 +10,8 @@ namespace Project.ENTITIES.Concrete
   public  class Reservation:BaseEntity
     {
         public string PersonCount { get; set; }
-        public string DestinationName { get; set; }
+
+       
         public int DestinationID { get; set; }
         public string Description { get; set; }
         public int AppUserID { get; set; }
@@ -22,6 +23,7 @@ namespace Project.ENTITIES.Concrete
         public Reservation()
         {
             RezervasyonDurumu = ReservationEnums.OnayBekliyor;
+            
         }
 
     }

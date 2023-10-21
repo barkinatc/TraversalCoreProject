@@ -135,22 +135,24 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
         {
             AdminUpdateReservationVM updateVM = new AdminUpdateReservationVM
             {
-                Destinations = _destinations,
-                Reservation = _reservationService.TWhere(x => x.ID == id).Select(x => new AdminReservationVM
-                {
-
-                    ID = x.ID,
-                    Description = x.Description,
-                    DestinationID = x.DestinationID,
-                    DestinationName = x.DestinationName,
-                    PersonCount = x.PersonCount,
-                    RezervasyonDurumu = x.RezervasyonDurumu
-
-
-
-
-                }).FirstOrDefault()
+                Destinations = _destinations
+                
             };
+            var reservation = _reservationService.TWhere(x => x.ID == id).Select(x => new AdminReservationVM
+            {
+
+                ID = x.ID,
+                Description = x.Description,
+                DestinationID = x.DestinationID,
+               
+                PersonCount = x.PersonCount,
+                RezervasyonDurumu = x.RezervasyonDurumu
+
+
+
+
+            }).FirstOrDefault();
+            updateVM.Reservation = reservation;
 
             return View(updateVM);
         }
@@ -165,7 +167,7 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
                 toBeUpdated.RezervasyonDurumu = p.RezervasyonDurumu;
                 toBeUpdated.PersonCount = p.Reservation.PersonCount;
                 toBeUpdated.DestinationID = p.Reservation.DestinationID;
-                toBeUpdated.DestinationName = p.Reservation.DestinationName;
+                
                 toBeUpdated.CreatedDate = p.Reservation.CreatedDate;
                 toBeUpdated.Description = p.Reservation.Description;
                 _reservationService.TUpdate(toBeUpdated);

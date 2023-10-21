@@ -10,7 +10,6 @@ namespace Project.ENTITIES.Interface
 {
     public interface IEntity
     {
-        [Key]
         public int ID { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
