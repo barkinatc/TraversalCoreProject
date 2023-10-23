@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Project.ENTITIES.Concrete;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 using TraversalCoreProject.ViewModels;
@@ -26,17 +23,17 @@ namespace TraversalCoreProject.Areas.Member.Controllers
         public async Task<IActionResult> MyProfile()
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
-            
+
             ViewBag.v = values;
-            
+
             return View();
         }
         [HttpGet]
-        public async Task< IActionResult> EditProfile()
+        public async Task<IActionResult> EditProfile()
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            
+
             UserEditVM userEditVM = new UserEditVM
             {
                 Name = values.Name,
@@ -44,7 +41,7 @@ namespace TraversalCoreProject.Areas.Member.Controllers
                 Mail = values.Email,
                 PhoneNo = values.PhoneNumber,
                 Gender = values.Gender
-               
+
             };
 
             return View(userEditVM);
@@ -54,12 +51,12 @@ namespace TraversalCoreProject.Areas.Member.Controllers
         public async Task<IActionResult> EditProfile(UserEditVM p)
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
-           
-            if (p.Image != null )
+
+            if (p.Image != null)
             {
                 var resource = Directory.GetCurrentDirectory();
                 var extension = Path.GetExtension(p.Image.FileName);
-                var imagename = Guid.NewGuid()+ extension;
+                var imagename = Guid.NewGuid() + extension;
                 var savelocation = $"{resource}/wwwroot/UserImages/{imagename}";
                 var stream = new FileStream(savelocation, FileMode.Create);
                 await p.Image.CopyToAsync(stream);
@@ -77,7 +74,7 @@ namespace TraversalCoreProject.Areas.Member.Controllers
 
             if (string.IsNullOrEmpty(p.Password))
             {
-                
+
                 ModelState.AddModelError("Password", "Lütfen parola giriniz.");
                 return View();
             }
@@ -93,11 +90,11 @@ namespace TraversalCoreProject.Areas.Member.Controllers
             }
             user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, p.Password);
             var result = await _userManager.UpdateAsync(user);
-            
+
 
             if (result.Succeeded)
             {
-                
+
                 TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
                 return View();
             }
@@ -107,6 +104,6 @@ namespace TraversalCoreProject.Areas.Member.Controllers
             return View();
         }
 
-        
+
     }
 }

@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project.DAL.Concrete;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace TraversalCoreProject.ViewComponents.Default
 {
-    public class _StatisticsComponent:ViewComponent
+    public class _StatisticsComponent : ViewComponent
     {
         public IViewComponentResult Invoke()
         {

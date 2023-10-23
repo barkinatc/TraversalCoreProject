@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Project.DAL.Abstract;
 using Project.DAL.Concrete;
-using Project.ENTITIES.Concrete;
 using Project.ENTITIES.Interface;
 using System;
 using System.Collections.Generic;
@@ -11,21 +10,27 @@ using System.Linq.Expressions;
 
 namespace Project.DAL.Repository
 {
-    public class GenericRepository<T> : IGenericDal<T> where T : class,IEntity
+    public class GenericRepository<T> : IGenericDal<T> where T : class, IEntity
     {
-        
 
-       
 
-        
+        protected Context _db;
+        public GenericRepository(Context db)
+        {
+            _db = db;
+        }
+
+
         public void Add(T item)
         {
             using var c = new Context();
+            //_db.Add(item);
+            //_db.SaveChanges();
 
             c.Add(item);
             c.SaveChanges();
         }
-    
+
 
 
 
@@ -43,12 +48,12 @@ namespace Project.DAL.Repository
 
             item.Status = ENTITIES.Enums.DataStatus.Deleted;
             item.DeletedDate = DateTime.Now;
-            c.Update(item);    
+            c.Update(item);
             c.SaveChanges();
-            
+
         }
 
-     
+
 
         public void Destroy(T item)
         {
@@ -58,7 +63,7 @@ namespace Project.DAL.Repository
             c.SaveChanges();
         }
 
-     
+
         public T Find(int id)
         {
             using var c = new Context();
@@ -74,7 +79,7 @@ namespace Project.DAL.Repository
 
         public List<T> GetActives()
         {
-            
+
             return Where(x => x.Status != ENTITIES.Enums.DataStatus.Deleted);
 
         }
@@ -84,7 +89,7 @@ namespace Project.DAL.Repository
             using var c = new Context();
             return c.Set<T>().ToList();
         }
-       
+
 
 
         public List<T> GetFirstDatas(int number)
@@ -116,7 +121,7 @@ namespace Project.DAL.Repository
             using var c = new Context();
 
             return c.Set<T>().Include(includeProperty);
-            
+
         }
 
         public IQueryable<X> Select<X>(Expression<Func<T, X>> exp)
@@ -138,7 +143,7 @@ namespace Project.DAL.Repository
             c.SaveChanges();
         }
 
-    
+
 
         public List<T> Where(Expression<Func<T, bool>> exp)
         {

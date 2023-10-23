@@ -17,14 +17,23 @@
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
-            <th>@item.ID</th>
-            <th>@item.Name</th>
-            <th>@item.Description</th>
-            <th>@item.Status</th>
-            <th><a href="/Admin/Guide/DeleteGuide/@item.ID" class="btn btn-outline-danger">Sil</a></th>
-            <th><a href="/Admin/Guide/UpdateGuide/@item.ID" class="btn btn-outline-warning">Güncelle</a></th>
-        </tr>
+<tr>
+    <th>@item.ID</th>
+    <th>@item.Name</th>
+    <th>@item.Description</th>
+    @if (item.Status=="Updated" || item.Status =="Inserted")
+    {
+        <th>Aktif</th>
+    }
+    else
+    {
+        <th>Pasif</th>
+    }
+
+    <th><a href="/Admin/Guide/ActiveGuide/@item.ID" class="btn btn-outline-success">Aktif Yap</a></th>
+    <th><a href="/Admin/Guide/DeleteGuide/@item.ID" class="btn btn-outline-danger">Pasif Yap</a></th>
+    <th><a href="/Admin/Guide/UpdateGuide/@item.ID" class="btn btn-outline-warning">Güncelle</a></th>
+</tr>
     }
 </table>
 <a target="_blank" class="btn btn-outline-primary" href="/Admin/Guide/AddGuide">Tur Rehberi Yarat</a>

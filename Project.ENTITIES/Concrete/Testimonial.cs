@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Project.ENTITIES.Concrete
+﻿namespace Project.ENTITIES.Concrete
 {
-  public  class Testimonial:BaseEntity
+    public class Testimonial : BaseEntity
     {
         public string Client { get; set; }
         public string Comment { get; set; }

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Project.ENTITIES.Concrete
 {
-   public class Destination:BaseEntity
+    public class Destination : BaseEntity
     {
         public string City { get; set; }
         public string DayNight { get; set; }
@@ -26,7 +22,7 @@ namespace Project.ENTITIES.Concrete
 
         public virtual List<Comment> Comments { get; set; }
         public virtual List<Reservation> Reservations { get; set; }
-       
+
 
     }
 }

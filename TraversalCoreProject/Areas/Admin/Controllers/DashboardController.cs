@@ -1,12 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Project.Business.Abstract;
-using Project.Business.Concrete;
-using Project.ENTITIES.Concrete;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace TraversalCoreProject.Areas.Admin.Controllers
 {
@@ -16,7 +10,7 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
         private readonly IDestinationService _destinationService;
         private readonly IGuideService _guideService;
         private readonly IReservationService _reservationService;
-       // private readonly UserManager<AppUser> _userManager;
+        // private readonly UserManager<AppUser> _userManager;
         private readonly IAppUserService _userService;
 
 
@@ -41,6 +35,6 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
             ViewBag.d = destinations.Count();
             return View();
         }
-      
+
     }
 }

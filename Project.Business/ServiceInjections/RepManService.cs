@@ -3,19 +3,16 @@ using Project.Business.Abstract;
 using Project.Business.Concrete;
 using Project.DAL.Abstract;
 using Project.DAL.EF;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Project.DAL.Repository;
 
 namespace Project.Business.ServiceInjections
 {
-  public static class RepManService
+    public static class RepManService
     {
-         public static void AddRepManServices(this IServiceCollection services)
+        public static void AddRepManServices(this IServiceCollection services)
         {
             //Addscoped
+            services.AddScoped(typeof(IGenericService<>), typeof(BaseManager<>));
             services.AddScoped<IDestinationService, DestinationManager>();
             services.AddScoped<IAbout2Service, About2Manager>();
             services.AddScoped<IAboutService, AboutManager>();
@@ -30,6 +27,9 @@ namespace Project.Business.ServiceInjections
             services.AddScoped<ITestimonialService, TestimonialManager>();
             services.AddScoped<IAppUserService, AppUserManager>();
             //AddScopedEf
+
+            services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
+
             services.AddScoped<IDestinationDal, EFDestinationDal>();
             services.AddScoped<IAbout2Dal, EFAbout2Dal>();
             services.AddScoped<IAboutDal, EFAboutDal>();
@@ -44,7 +44,7 @@ namespace Project.Business.ServiceInjections
             services.AddScoped<ISubAboutDal, EFSubAboutDal>();
             services.AddScoped<IAppUserDal, EFAppUserDal>();
 
-          
+
         }
     }
 }

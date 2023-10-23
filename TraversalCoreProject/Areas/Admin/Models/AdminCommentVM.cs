@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace TraversalCoreProject.Areas.Admin.Models
+﻿namespace TraversalCoreProject.Areas.Admin.Models
 {
     public class AdminCommentVM
     {
@@ -20,7 +15,7 @@ namespace TraversalCoreProject.Areas.Admin.Models
         public string ModifedDate { get; set; }
         public string CommentReply { get; set; }
 
-        public string  Status { get; set; }
+        public string Status { get; set; }
 
     }
 }

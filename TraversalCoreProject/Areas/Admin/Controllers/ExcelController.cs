@@ -1,14 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OfficeOpenXml;
 using Project.Business.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TraversalCoreProject.Areas.Admin.Models;
 
 namespace TraversalCoreProject.Areas.Admin.Controllers
-{[Area("Admin")]
+{
+    [Area("Admin")]
     public class ExcelController : Controller
     {
         private readonly IDestinationService _destinationService;

@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using Project.Business.Abstract;
 using Project.ENTITIES.Concrete;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TraversalCoreProject.Areas.Admin.Models;
 
 namespace TraversalCoreProject.Areas.Admin.Controllers
@@ -137,7 +133,7 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
             AdminUpdateReservationVM updateVM = new AdminUpdateReservationVM
             {
                 Destinations = _destinations
-                
+
             };
             var reservation = _reservationService.TWhere(x => x.ID == id).Select(x => new AdminReservationVM
             {
@@ -145,7 +141,7 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
                 ID = x.ID,
                 Description = x.Description,
                 DestinationID = x.DestinationID,
-               
+
                 PersonCount = x.PersonCount,
                 RezervasyonDurumu = x.RezervasyonDurumu
 
@@ -168,7 +164,7 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
                 toBeUpdated.RezervasyonDurumu = p.RezervasyonDurumu;
                 toBeUpdated.PersonCount = p.Reservation.PersonCount;
                 toBeUpdated.DestinationID = p.Reservation.DestinationID;
-                
+
                 toBeUpdated.CreatedDate = p.Reservation.CreatedDate;
                 toBeUpdated.Description = p.Reservation.Description;
                 _reservationService.TUpdate(toBeUpdated);

@@ -1,12 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Project.Business.Abstract;
-using Project.Business.Concrete;
-using Project.DAL.EF;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace TraversalCoreProject.Areas.Member.Controllers
 {
@@ -16,7 +10,7 @@ namespace TraversalCoreProject.Areas.Member.Controllers
     {
 
 
-       private readonly IDestinationService _destinationService;
+        private readonly IDestinationService _destinationService;
 
         public DestinationController(IDestinationService destinationService)
         {

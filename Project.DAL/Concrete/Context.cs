@@ -1,17 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Project.ENTITIES.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project.DAL.Concrete
 {
-  public  class Context:IdentityDbContext<AppUser,AppRole,int>
+    public class Context : IdentityDbContext<AppUser, AppRole, int>
     {
-       
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("server=.;database=TraversalCoreDB3; integrated security = true;");
@@ -29,6 +24,8 @@ namespace Project.DAL.Concrete
         public DbSet<About> Abouts { get; set; }
         public DbSet<About2> Abouts2 { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<ContactMe> ContactMes { get; set; }
+
         public DbSet<Destination> Destinations { get; set; }
         public DbSet<Features> Features { get; set; }
         public DbSet<Guide> Guides { get; set; }
@@ -37,6 +34,6 @@ namespace Project.DAL.Concrete
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<SideFeatures> SideFeatures { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<Reservation > Reservations{ get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
     }
 }

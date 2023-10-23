@@ -1,8 +1,5 @@
 ﻿using Project.ENTITIES.Enums;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace TraversalCoreProject.Areas.Admin.Models
 {
@@ -23,6 +20,6 @@ namespace TraversalCoreProject.Areas.Admin.Models
         public DateTime CreatedDate { get; set; }
         public string Status { get; set; }
         public string PhoneNo { get; set; }
-       
+
     }
 }

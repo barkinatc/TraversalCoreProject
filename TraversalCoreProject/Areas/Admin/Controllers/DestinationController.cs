@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project.Business.Abstract;
-using Project.Business.Concrete;
-using Project.DAL.EF;
 using Project.ENTITIES.Concrete;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TraversalCoreProject.Areas.Admin.Models;
 
 namespace TraversalCoreProject.Areas.Admin.Controllers
@@ -74,7 +70,7 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
             //_destinationManager.TAdd(p);
             ModelState.AddModelError("Hata", "Islem basarisiz olmustur.");
             return Redirect("/Admin/Destination/ListDestinations");
-           
+
         }
         [HttpGet]
         public IActionResult UpdateDestination(int id)
@@ -92,9 +88,9 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult UpdateDestination(AdminDestinationVM destinationVM)
         {
-            
-                Destination toBeUpdated = _destinationService.TFind(destinationVM.ID);
-            if (toBeUpdated!=null)
+
+            Destination toBeUpdated = _destinationService.TFind(destinationVM.ID);
+            if (toBeUpdated != null)
             {
                 toBeUpdated.ID = destinationVM.ID;
                 toBeUpdated.City = destinationVM.City;
@@ -106,13 +102,13 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
                 TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
                 return Redirect("/Admin/Destination/ListDestinations");
             }
-               
-            
+
+
             ModelState.AddModelError("Hata", "Islem basarisiz olmustur.");
             return Redirect("/Admin/Destination/ListDestinations");
         }
 
-        public IActionResult DeleteDestination(int id )
+        public IActionResult DeleteDestination(int id)
         {
             _destinationService.TDestroy(_destinationService.TFind(id));
             TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";

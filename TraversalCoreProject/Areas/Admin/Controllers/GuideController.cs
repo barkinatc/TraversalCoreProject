@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project.Business.Abstract;
 using Project.ENTITIES.Concrete;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TraversalCoreProject.Areas.Admin.Models;
 
 namespace TraversalCoreProject.Areas.Admin.Controllers
@@ -26,14 +24,14 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
                 ID = x.ID,
                 Name = x.Name,
                 Description = x.Description,
-                Status =x.Status.ToString()
+                Status = x.Status.ToString()
             }).ToList();
             return View(guides);
         }
         [HttpGet]
         public IActionResult AddGuide()
         {
-            
+
 
 
             return View();
@@ -68,11 +66,11 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
             var guide = _guideService.TWhere(x => x.ID == id).Select(x => new AdminGuideVM
             {
                 ID = x.ID,
-             
+                Status = x.Status.ToString(),
                 Description = x.Description,
-                Name=x.Name
-                
-                
+                Name = x.Name
+
+
             }).FirstOrDefault();
             return View(guide);
         }
@@ -81,7 +79,7 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
         {
 
             Guide toBeUpdated = _guideService.TFind(guideVM.ID);
-            if (toBeUpdated !=null)
+            if (toBeUpdated != null)
             {
                 toBeUpdated.ID = guideVM.ID;
 
@@ -96,17 +94,23 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
             ModelState.AddModelError("Hata", "Islem basarisiz olmustur.");
 
             return View();
-           
+
 
         }
+        public IActionResult ActiveGuide(int id)
+        {
+            _guideService.ActiveGuide(id);
 
+            return Redirect("/Admin/Guide/ListGuides");
+
+        }
         public IActionResult DeleteGuide(int id)
         {
             //_guideService.TDelete(_guideService.TFind(id));
             var user = _guideService.TFind(id);
             _guideService.TDelete(user);
 
-            if (user !=null)
+            if (user != null)
             {
                 TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
                 return Redirect("/Admin/Guide/ListGuides");

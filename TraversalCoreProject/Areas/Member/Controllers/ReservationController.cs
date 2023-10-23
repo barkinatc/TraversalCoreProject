@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Project.Business.Abstract;
 using Project.ENTITIES.Concrete;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,21 +11,21 @@ using TraversalCoreProject.Areas.Member.Models;
 namespace TraversalCoreProject.Areas.Member.Controllers
 {
     [Area("Member")]
-  
+
 
     public class ReservationController : Controller
     {
         private readonly IDestinationService _destinationService;
         private readonly IReservationService _reservationService;
         private readonly IAppUserService _userService;
-        
+
 
         public ReservationController(IDestinationService destinationService, IReservationService reservationService, IAppUserService userService, UserManager<AppUser> userManager)
         {
             _destinationService = destinationService;
             _reservationService = reservationService;
             _userService = userService;
-            
+
         }
 
 
@@ -59,7 +57,7 @@ namespace TraversalCoreProject.Areas.Member.Controllers
         [HttpGet]
         public IActionResult NewReservation()
         {
-            
+
 
             List<MemberDestinationVM> destinations = _destinationService.TGetList().Select(x => new MemberDestinationVM
             {
@@ -74,7 +72,7 @@ namespace TraversalCoreProject.Areas.Member.Controllers
                 Destinations = destinations
             };
 
-            
+
             return View(addVM);
         }
         [HttpPost]

@@ -1,11 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project.Business.Abstract;
-using Project.Business.Concrete;
-using Project.DAL.EF;
 using Project.ENTITIES.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using TraversalCoreProject.ViewModels;
 
@@ -17,7 +12,7 @@ namespace TraversalCoreProject.Controllers
         private readonly ICommentService _commentService;
         private readonly IAppUserService _userService;
 
-        public CommentController(ICommentService commentService,IAppUserService userService)
+        public CommentController(ICommentService commentService, IAppUserService userService)
         {
             _commentService = commentService;
             _userService = userService;
@@ -27,13 +22,13 @@ namespace TraversalCoreProject.Controllers
         public PartialViewResult AddComment()
         {
 
-          
-            
+
+
             return PartialView();
-            
+
         }
         [HttpPost]
-        public async Task< IActionResult> AddComment(AddCommentPartialVM p)
+        public async Task<IActionResult> AddComment(AddCommentPartialVM p)
         {
             var user = await _userService.GetCurrentUserAsync(User);
 
@@ -45,7 +40,7 @@ namespace TraversalCoreProject.Controllers
 
             //commentManager.TAdd(p);
             _commentService.TAdd(comment);
-            return RedirectToAction("Index","Destination");
+            return RedirectToAction("Index", "Destination");
         }
     }
 }

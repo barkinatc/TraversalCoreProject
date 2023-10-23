@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Project.Business.Abstract;
-using Project.ENTITIES.Concrete;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TraversalCoreProject.Areas.Admin.Models;
 
 namespace TraversalCoreProject.Areas.Admin.Controllers
@@ -34,8 +30,8 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
                 Surname = x.Surname,
                 PhoneNo = x.PhoneNumber,
                 Gender = x.Gender,
-                UserName =x.UserName,
-                Email =x.Email
+                UserName = x.UserName,
+                Email = x.Email
 
 
             }).ToList();
@@ -59,9 +55,9 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
             // ModelState.AddModelError("User", "Kullanıcı Silinemedi.");
             // //HATA mesajı çıkartıcam
 
-            var user = _userService.TFind( id);
+            var user = _userService.TFind(id);
 
-            if (user!=null)
+            if (user != null)
             {
                 _userService.TDelete(user);
                 TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
@@ -77,7 +73,7 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
             {
                 ID = x.ID,
                 DestinationID = x.DestinationID,
-                DestinationName =x.Destination.City,
+                DestinationName = x.Destination.City,
                 Description = x.Description,
                 AppUserName = x.AppUser.Name,
                 AppUserSurName = x.AppUser.Surname,
@@ -98,9 +94,9 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
                 Status = x.Status.ToString(),
                 DestinationID = x.DestinationID,
                 DestinationName = x.Destination.City,
-                CreatedDate =x.CreatedDate.ToString(),
+                CreatedDate = x.CreatedDate.ToString(),
                 AppUserName = x.AppUser.Name,
-                AppUserSurname =x.AppUser.Surname
+                AppUserSurname = x.AppUser.Surname
 
 
             }).ToList();

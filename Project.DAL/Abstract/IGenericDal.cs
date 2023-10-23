@@ -1,18 +1,15 @@
-﻿using Project.ENTITIES.Concrete;
-using Project.ENTITIES.Interface;
+﻿using Project.ENTITIES.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project.DAL.Abstract
 {
-   public interface IGenericDal<T> where T: IEntity
+    public interface IGenericDal<T> where T : IEntity
     {
         List<T> GetAll();
-       
+
 
         List<T> GetActives();
 
@@ -24,24 +21,24 @@ namespace Project.DAL.Abstract
 
         void Add(T item);
 
-       
+
 
         void Update(T item);
 
-        
+
 
         void Delete(T item);
 
-       
+
 
         void Destroy(T item);
-        
+
 
 
         //Linq
 
         List<T> Where(Expression<Func<T, bool>> exp);
-        
+
 
         bool Any(Expression<Func<T, bool>> exp);
 

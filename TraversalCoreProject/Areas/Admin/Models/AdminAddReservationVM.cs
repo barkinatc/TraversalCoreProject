@@ -1,8 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace TraversalCoreProject.Areas.Admin.Models
 {
@@ -11,7 +7,7 @@ namespace TraversalCoreProject.Areas.Admin.Models
         public List<AdminDestinationVM> Destinations { get; set; }
         public List<AdminAppUserVM> AppUsers { get; set; }
 
-     
+
         public AdminReservationVM Reservation { get; set; }
 
     }

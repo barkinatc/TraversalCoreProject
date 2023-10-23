@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace TraversalCoreProject.Custom
 {
-    public class CustomIdentityValidator:IdentityErrorDescriber
+    public class CustomIdentityValidator : IdentityErrorDescriber
     {
         public override IdentityError PasswordTooShort(int length)
         {
@@ -37,16 +33,16 @@ namespace TraversalCoreProject.Custom
             return new IdentityError()
             {
                 Code = "PasswordRequiresUpper",
-                Description= "Parola en az bir büyük harf ('A'-'Z') içermelidir."
+                Description = "Parola en az bir büyük harf ('A'-'Z') içermelidir."
             };
         }
         public override IdentityError PasswordRequiresDigit()
         {
-             return new IdentityError()
+            return new IdentityError()
             {
                 Code = "PasswordRequiresDigit",
                 Description = "Parola en az bir rakam içermelidir. ('0'-'9')."
-             };
+            };
         }
     }
 }

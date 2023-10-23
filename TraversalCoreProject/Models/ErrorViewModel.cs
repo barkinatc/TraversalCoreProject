@@ -1,5 +1,3 @@
-using System;
-
 namespace TraversalCoreProject.Models
 {
     public class ErrorViewModel

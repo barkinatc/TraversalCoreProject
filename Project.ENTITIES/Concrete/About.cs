@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Project.ENTITIES.Concrete
+﻿namespace Project.ENTITIES.Concrete
 {
-   public class About: BaseEntity
+    public class About : BaseEntity
     {
         public string Title { get; set; }
 

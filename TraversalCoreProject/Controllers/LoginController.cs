@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Project.ENTITIES.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using TraversalCoreProject.ViewModels;
 
@@ -15,7 +12,7 @@ namespace TraversalCoreProject.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        public LoginController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager)
+        public LoginController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -26,7 +23,7 @@ namespace TraversalCoreProject.Controllers
             return View();
         }
         [HttpPost]
-        public async Task< IActionResult> SignUp(UserRegisterVM p)
+        public async Task<IActionResult> SignUp(UserRegisterVM p)
         {
             AppUser appUser = new AppUser
             {
@@ -51,7 +48,7 @@ namespace TraversalCoreProject.Controllers
                     }
                 }
             }
-            return  View();
+            return View();
         }
         [HttpGet]
         public IActionResult SignIn()
@@ -59,18 +56,18 @@ namespace TraversalCoreProject.Controllers
             return View();
         }
         [HttpPost]
-        public async Task< IActionResult> SignIn(UserSignInVM p)
+        public async Task<IActionResult> SignIn(UserSignInVM p)
         {
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(p.UserName, p.Password, false, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("MyProfile","Profile",new { area = "Member" });
+                    return RedirectToAction("MyProfile", "Profile", new { area = "Member" });
                 }
                 else
                 {
-                    return RedirectToAction("SignIn","Login");
+                    return RedirectToAction("SignIn", "Login");
                 }
             }
             return View();

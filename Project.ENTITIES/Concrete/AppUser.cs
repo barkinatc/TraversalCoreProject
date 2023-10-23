@@ -3,13 +3,10 @@ using Project.ENTITIES.Enums;
 using Project.ENTITIES.Interface;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project.ENTITIES.Concrete
 {
-    public class AppUser:IdentityUser<int>,IEntity
+    public class AppUser : IdentityUser<int>, IEntity
     {
         public int ID { get; set; }
         public string ImageUrl { get; set; }

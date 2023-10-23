@@ -1,9 +1,5 @@
 ﻿using Project.ENTITIES.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project.Business.Abstract
 {
@@ -11,8 +7,8 @@ namespace Project.Business.Abstract
     {
         List<Reservation> getReservationsWithOthers();
         byte[] GetReservationsReportAsExcel();
-        public void cancelReservation(int id );
-       public void acceptReservaiton(int id );
+        public void cancelReservation(int id);
+        public void acceptReservaiton(int id);
 
 
     }

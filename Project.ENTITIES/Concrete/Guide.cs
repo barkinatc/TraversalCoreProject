@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Project.ENTITIES.Concrete
+﻿namespace Project.ENTITIES.Concrete
 {
-  public  class Guide:BaseEntity
+    public class Guide : BaseEntity
     {
         public string Name { get; set; }
         public string Description { get; set; }

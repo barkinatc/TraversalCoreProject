@@ -1,21 +1,16 @@
-﻿using iTextSharp.text;
-using iTextSharp.text.pdf;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Project.Business.Abstract;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using TraversalCoreProject.ViewModels;
 
 namespace TraversalCoreProject.Controllers
 {
-    
+
     public class PdfController : Controller
     {
         private readonly IReservationService _reservationService;
-        private readonly IDestinationService     _destinationService;
+        private readonly IDestinationService _destinationService;
 
         public PdfController(IReservationService reservationService, IDestinationService destinationService)
         {

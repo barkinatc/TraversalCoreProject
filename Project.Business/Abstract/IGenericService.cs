@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project.Business.Abstract
 {
-  public  interface IGenericService <T> 
+    public interface IGenericService<T>
     {
         void TAdd(T t);
         void TDelete(T t);
@@ -21,7 +19,7 @@ namespace Project.Business.Abstract
         List<T> TGetPasives();
 
         List<T> TGetUpdatedes();
-        
+
 
 
         List<T> TWhere(Expression<Func<T, bool>> exp);
