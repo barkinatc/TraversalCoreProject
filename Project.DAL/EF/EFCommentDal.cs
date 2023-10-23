@@ -17,7 +17,7 @@ namespace Project.DAL.EF
         {
             using (var context = new Context())
             {
-                return context.Comments.Include(x => x.Destination).Where(x => x.Status != ENTITIES.Enums.DataStatus.Deleted).ToList();
+                return context.Comments.Include(x=>x.AppUser).Include(x => x.Destination).Where(x => x.Status != ENTITIES.Enums.DataStatus.Deleted).ToList();
             }
 
         }

@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace TraversalCoreProject.Areas.Member.Models
 {
-    public class MemberReservationListPageVM
+    public class MemberReservationAddVM
     {
-        public List<MemberReservationVM> Reservations { get; set; }
+        public List<MemberDestinationVM> Destinations { get; set; }
+        public MemberReservationVM Reservation { get; set; }
 
         public MemberUserVM User { get; set; }
 

@@ -28,26 +28,26 @@
                 <p>
                     @item.CommentContent
                 </p>
-                <div class="media second mt-4 p-0 pt-2">
-                    <a class="img-circle img-circle-sm" href="#url">
-                        <img src="~/Traversal-Liberty/assets/images/c3.jpg" class="img-fluid" alt="...">
-                    </a>
-                    <div class="media-body">
-                        <ul class="time-rply mb-2">
-                            <li>
-                                <a href="#URL" class="name mt-0 mb-2 d-block">Admin</a>
-                               @item.ModifedDate
-
-                            </li>
-                            <li class="reply-last">
-                                <a href="#reply" class="reply"> Reply</a>
-                            </li>
-                        </ul>
-                        <p>
-                            @item.CommentReply
-                        </p>
+                @if (!string.IsNullOrWhiteSpace(item.CommentReply)) // Yanıt varsa admin bölümünü göster
+                {
+                    <div class="media second mt-4 p-0 pt-2">
+                        <a class="img-circle img-circle-sm" href="#url">
+                            <img src="~/Traversal-Liberty/assets/images/c3.jpg" class="img-fluid" alt="...">
+                        </a>
+                        <div class="media-body">
+                            <ul class="time-rply mb-2">
+                                <li>
+                                    <a href="#URL" class="name mt-0 mb-2 d-block">Admin</a>
+                                    @item.ModifedDate
+                                </li>
+                               
+                            </ul>
+                            <p>
+                                @item.CommentReply
+                            </p>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
         </div>
     }

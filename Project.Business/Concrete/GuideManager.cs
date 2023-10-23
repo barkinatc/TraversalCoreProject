@@ -59,10 +59,7 @@ namespace Project.Business.Concrete
             return _guideDal.GetActives();
         }
 
-        public IQueryable<Guide> TGetAllAsQueryable()
-        {
-            throw new NotImplementedException();
-        }
+      
 
         public List<Guide> TGetFirstDatas(int number)
         {

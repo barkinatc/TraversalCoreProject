@@ -1,22 +1,40 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Project.Business.Abstract;
 using Project.Business.Concrete;
 using Project.DAL.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TraversalCoreProject.ViewModels;
 
 namespace TraversalCoreProject.ViewComponents.Default
 {
     public class _PopularDestinationsComponent:ViewComponent
     {
-        readonly DestinationManager destinationManager = new DestinationManager(new EFDestinationDal());
+      //  readonly DestinationManager destinationManager = new DestinationManager(new EFDestinationDal());
 
+        private readonly IDestinationService _destinationService;
+
+        public _PopularDestinationsComponent(IDestinationService destinationService)
+        {
+            _destinationService = destinationService;
+        }
 
         public IViewComponentResult Invoke()
         {
-            var values = destinationManager.TGetList();
-            return View(values  );
+            List<DestinationVM> destinations =
+_destinationService.TGetList().Select(x=>new DestinationVM 
+
+{
+ID=x.ID,
+Image =x.Image,
+City =x.City,
+Description=x.Description
+,Price=x.Price,
+DayNight=x.DayNight
+}).ToList();
+            return View(destinations  );
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Project.DAL.Abstract
    public interface IGenericDal<T> where T: IEntity
     {
         List<T> GetAll();
-        IQueryable<T> GetAllAsQueryable();
+       
 
         List<T> GetActives();
 

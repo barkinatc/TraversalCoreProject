@@ -60,11 +60,7 @@ namespace Project.Business.Concrete
 
         }
 
-        public IQueryable<SideFeatures> TGetAllAsQueryable()
-        {
-            throw new NotImplementedException();
-        }
-
+     
         public List<SideFeatures> TGetFirstDatas(int number)
         {
             return _sideFeatureDal.GetFirstDatas(number);

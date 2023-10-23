@@ -29,6 +29,7 @@ namespace Project.ENTITIES.Concrete
         //Relationa prop
 
         public List<Reservation> Reservations { get; set; }
+        public List<Comment> Comments { get; set; }
 
 
     }

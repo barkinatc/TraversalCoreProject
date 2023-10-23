@@ -55,10 +55,7 @@ public void TAdd(Newsletter t)
             throw new NotImplementedException();
         }
 
-        public IQueryable<Newsletter> TGetAllAsQueryable()
-        {
-            throw new NotImplementedException();
-        }
+     
 
         public List<Newsletter> TGetFirstDatas(int number)
         {

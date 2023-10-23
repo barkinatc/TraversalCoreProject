@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Identity;
 using Project.Business.Abstract;
 using Project.DAL.Abstract;
 using Project.ENTITIES.Concrete;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,10 +16,12 @@ namespace Project.Business.Concrete
     public class AppUserManager : IAppUserService
     {
         IAppUserDal _appUserDal;
-        
-        public AppUserManager(IAppUserDal appUserDal)
+        private readonly UserManager<AppUser> _userManager;
+
+        public AppUserManager(IAppUserDal appUserDal , UserManager<AppUser> userManager)
         {
             _appUserDal = appUserDal;
+            _userManager = userManager;
         }
 
         public void TAdd(AppUser t)
@@ -60,10 +64,7 @@ namespace Project.Business.Concrete
 
         }
 
-        public IQueryable<AppUser> TGetAllAsQueryable()
-        {
-            throw new NotImplementedException();
-        }
+    
 
         public List<AppUser> TGetFirstDatas(int number)
         {
@@ -116,6 +117,12 @@ namespace Project.Business.Concrete
         {
             return _appUserDal.Where(exp);
 
+        }
+
+        public async Task<AppUser> GetCurrentUserAsync(ClaimsPrincipal userClaims)
+        {
+            var user = await _userManager.GetUserAsync(userClaims);
+            return user;
         }
     }
 }

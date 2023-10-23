@@ -15,13 +15,14 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
     public class ReservationController : Controller
     {
         private readonly IReservationService _reservationService;
-        private readonly UserManager<AppUser> _userManager;
+        //private readonly UserManager<AppUser> _userManager;
+        private readonly IAppUserService _userService;
         private readonly IDestinationService _destinationService;
 
-        public ReservationController(IReservationService reservationService, IDestinationService destinationService, UserManager<AppUser> userManager)
+        public ReservationController(IReservationService reservationService, IDestinationService destinationService, IAppUserService appUserService)
         {
             _reservationService = reservationService;
-            _userManager = userManager;
+            _userService = appUserService;
             _destinationService = destinationService;
 
             _destinations = _destinationService.TGetList().Select(x => new AdminDestinationVM
@@ -64,7 +65,7 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
         {
             AdminAddReservationVM addReservationVM = new AdminAddReservationVM
             {
-                AppUsers = _userManager.Users.Select(x => new AdminAppUserVM
+                AppUsers = _userService.TGetList().Select(x => new AdminAppUserVM
                 {
                     ID = x.Id,
                     Name = x.Name,

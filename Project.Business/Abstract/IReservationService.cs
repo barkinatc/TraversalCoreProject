@@ -10,8 +10,8 @@ namespace Project.Business.Abstract
     public interface IReservationService : IGenericService<Reservation>
     {
         List<Reservation> getReservationsWithOthers();
-
-       public void cancelReservation(int id );
+        byte[] GetReservationsReportAsExcel();
+        public void cancelReservation(int id );
        public void acceptReservaiton(int id );
 
 

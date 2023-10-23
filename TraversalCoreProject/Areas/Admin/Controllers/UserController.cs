@@ -13,18 +13,20 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
     [Area("Admin")]
     public class UserController : Controller
     {
-        IAppUserService _appUserService;
+        IAppUserService _userService;
         IReservationService _rezervationService;
+        ICommentService _commentService;
 
-        public UserController(IAppUserService appUserService, IReservationService rezervationService)
+        public UserController(IAppUserService userService, IReservationService rezervationService, ICommentService commentService)
         {
-            _appUserService = appUserService;
+            _userService = userService;
             _rezervationService = rezervationService;
+            _commentService = commentService;
         }
 
         public IActionResult ListUsers()
         {
-            List<AdminAppUserVM> users = _appUserService.TGetList().Select(x => new AdminAppUserVM
+            List<AdminAppUserVM> users = _userService.TGetList().Select(x => new AdminAppUserVM
 
             {
                 ID = x.Id,
@@ -57,11 +59,11 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
             // ModelState.AddModelError("User", "Kullanıcı Silinemedi.");
             // //HATA mesajı çıkartıcam
 
-            var user = _appUserService.TFind( id);
+            var user = _userService.TFind( id);
 
             if (user!=null)
             {
-                _appUserService.TDelete(user);
+                _userService.TDelete(user);
                 TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
                 return Redirect("/Admin/User/ListUsers");
 
@@ -71,19 +73,39 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
         }
         public IActionResult GetReservationHistory(int id)
         {
-            List<AdminReservationVM> values = _rezervationService.TGetList().Where(x => x.AppUserID == id).Select(x => new AdminReservationVM
+            List<AdminReservationVM> values = _rezervationService.getReservationsWithOthers().Where(x => x.AppUserID == id).Select(x => new AdminReservationVM
             {
                 ID = x.ID,
                 DestinationID = x.DestinationID,
                 DestinationName =x.Destination.City,
                 Description = x.Description,
-                //AppUserName = x.AppUser.Name,
-                //AppUserSurName = x.AppUser.Surname,
+                AppUserName = x.AppUser.Name,
+                AppUserSurName = x.AppUser.Surname,
                 RezervasyonDurumu = x.RezervasyonDurumu,
                 CreatedDate = x.CreatedDate
 
             }).ToList();
             return View(values);
+        }
+        public IActionResult GetCommentHistory(int id)
+        {
+            var comments = _commentService.TGetCommentsWithDestinations().Where(x => x.AppUserID == id).Select(x => new AdminCommentVM
+            {
+                ID = x.ID,
+                CommentContent = x.CommentContent,
+                CommentReply = x.CommentReply,
+                CommentUser = x.CommentUser,
+                Status = x.Status.ToString(),
+                DestinationID = x.DestinationID,
+                DestinationName = x.Destination.City,
+                CreatedDate =x.CreatedDate.ToString(),
+                AppUserName = x.AppUser.Name,
+                AppUserSurname =x.AppUser.Surname
+
+
+            }).ToList();
+
+            return View(comments);
         }
     }
 }

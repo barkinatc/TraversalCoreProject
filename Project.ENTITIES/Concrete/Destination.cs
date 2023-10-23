@@ -26,11 +26,7 @@ namespace Project.ENTITIES.Concrete
 
         public virtual List<Comment> Comments { get; set; }
         public virtual List<Reservation> Reservations { get; set; }
-        public Destination()
-        {
-            Destination d = new Destination();
-        }
-
+       
 
     }
 }
