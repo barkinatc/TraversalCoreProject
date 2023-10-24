@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Project.ENTITIES.Concrete;
+using Project.MAP.Configurations;
 
 namespace Project.DAL.Context
 {
@@ -16,14 +17,32 @@ namespace Project.DAL.Context
         //{
         //    _context = context;
         //}
+        
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<AppUser>().Ignore(x => x.ID);
+            builder.ApplyConfiguration(new AppUserConfiguration());
+            builder.ApplyConfiguration(new About2Configuration());
+            builder.ApplyConfiguration(new AboutConfiguration());
+            builder.ApplyConfiguration(new AnnouncementConfiguration());
+            builder.ApplyConfiguration(new CommentConfiguration());
+            builder.ApplyConfiguration(new ContactConfiguration());
+            builder.ApplyConfiguration(new ContactMeConfiguration());
+            builder.ApplyConfiguration(new DestinationConfiguration());
+            builder.ApplyConfiguration(new FeatureConfiguration());
+            builder.ApplyConfiguration(new SideFeatureConfiguration());
+            builder.ApplyConfiguration(new NewsLetterConfiguration());
+            builder.ApplyConfiguration(new GuideConfiguration());
+            builder.ApplyConfiguration(new ReservationConfiguration());
+            builder.ApplyConfiguration(new SubAboutConfiguration());
+            builder.ApplyConfiguration(new TestimonialConfiguration());
+           
+
         }
         public DbSet<About> Abouts { get; set; }
         public DbSet<About2> Abouts2 { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
         public DbSet<ContactMe> ContactMes { get; set; }
 
         public DbSet<Destination> Destinations { get; set; }

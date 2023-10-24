@@ -1,0 +1,33 @@
+﻿@model List<AdminContactMeVM>
+@{
+    ViewData["Title"] = "ListContactMe";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Bize Ulaşına Gelen Mesajlar</h1>
+
+<table class=" table table-hover">
+    <tr>
+        <td>Kimden</td>
+        <td>Mail</td>
+        <td>Konu</td> 
+        <td>Sil</td>
+        <td>Mesaj</td>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>@item.Name</td>
+            <td>@item.Mail</td>
+            <td>@item.Subject</td>
+            <td><a href="/Admin/ContactMe/DeleteContactMessage/@item.ID" class=" btn btn-outline-danger">Sil</a></td>
+            <td><a href="/Admin/ContactMe/MessageInfo/@item.ID" class=" btn btn-outline-dark">Mesajı Aç</a></td>
+
+
+        </tr>
+    }
+</table>
+
+<td><a href="/Admin/ContactMe/ListDeletedMessages" class=" btn btn-outline-info">Silinmiş Mesajları Göster</a></td>

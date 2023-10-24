@@ -6,13 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project.MAP.Configuration
+namespace Project.MAP.Configurations
 {
-    public class AppUserConfiguration:BaseConfiguration<AppUser>
+  public  class AppUserConfiguration:BaseConfiguration<AppUser>
     {
         public override void Configure(EntityTypeBuilder<AppUser> builder)
         {
             base.Configure(builder);
+
+
+            
+
             builder.Ignore(x => x.ID);
         }
     }

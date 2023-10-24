@@ -1,0 +1,59 @@
+﻿@model AdminContactMeVM
+@{
+    ViewData["Title"] = "Mesaj Detayları";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Sayfa başlığı -->
+<div class="my-4">
+    <h1 class="display-4 text-center">Mesaj Detayları</h1>
+</div>
+
+<style>
+    /* Özel stil tanımlamaları */
+    .message-card {
+        max-width: 600px;
+        margin: auto;
+        border-radius: 10px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s linear;
+        overflow: hidden;
+        border: none;
+    }
+
+    .card-header-custom {
+        color: #fff;
+        background-color: #007bff; /* Veya projenizin temel rengi */
+        padding: 20px 15px;
+    }
+
+    .card-body-custom {
+        background-color: #fff;
+        padding: 20px 15px;
+        color: #333; /* Veya projenizin yazı rengi */
+    }
+
+    .card-footer-custom {
+        background-color: #f8f9fa; /* Veya projenizin footer rengi */
+        padding: 20px 15px;
+        text-align: right;
+    }
+</style>
+
+<div class="container mt-5">
+    <!-- Özel stilize edilmiş kart başlangıcı -->
+    <div class="message-card">
+        <div class="card-header-custom">
+            <h2 style="margin: 0;">@Model.Subject</h2>
+            <p style="font-size: 0.9em; margin: 0;">Kimden: @Model.Name</p>
+        </div>
+        <div class="card-body-custom">
+            <p><strong>E-posta: </strong>@Model.Mail</p>
+            <p>@Model.MessageBody</p>
+        </div>
+        <div class="card-footer-custom">
+            <a href="/Admin/ContactMe/ListContactMe" class="btn btn-primary">Geri Dön</a>
+        </div>
+    </div>
+    <!-- Özel stilize edilmiş kart sonu -->
+</div>

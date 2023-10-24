@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project.MAP.Configuration
+namespace Project.MAP.Configurations
 {
-    public abstract class BaseConfiguration<T> : IEntityTypeConfiguration<T> where T : class, IEntity
+    public abstract class BaseConfiguration<T>:IEntityTypeConfiguration<T> where T:class,IEntity
     {
+        
+
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {
             throw new NotImplementedException();
