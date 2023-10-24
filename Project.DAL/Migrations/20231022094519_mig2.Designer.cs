@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Project.DAL.Concrete;
+using Project.DAL.Context;
 
 namespace Project.DAL.Migrations
 {
-    [DbContext(typeof(Context))]
+    [DbContext(typeof(MyContext))]
     [Migration("20231022094519_mig2")]
     partial class mig2
     {

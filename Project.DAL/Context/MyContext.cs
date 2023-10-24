@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Project.ENTITIES.Concrete;
 
-namespace Project.DAL.Concrete
+namespace Project.DAL.Context
 {
-    public class Context : IdentityDbContext<AppUser, AppRole, int>
+    public class MyContext : IdentityDbContext<AppUser, AppRole, int>
     {
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

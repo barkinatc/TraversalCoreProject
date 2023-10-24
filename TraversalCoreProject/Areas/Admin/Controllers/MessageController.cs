@@ -8,7 +8,7 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
     public class MessageController : Controller
 
     {
-        IAbout2Service _about2Service;
+      private readonly  IAbout2Service _about2Service;
 
         public MessageController(IAbout2Service about2Service)
         {

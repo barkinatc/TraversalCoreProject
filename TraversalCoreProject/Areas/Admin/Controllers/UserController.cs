@@ -9,9 +9,9 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
     [Area("Admin")]
     public class UserController : Controller
     {
-        IAppUserService _userService;
-        IReservationService _rezervationService;
-        ICommentService _commentService;
+     private    readonly   IAppUserService _userService;
+     private readonly   IReservationService _rezervationService;
+     private readonly   ICommentService _commentService;
 
         public UserController(IAppUserService userService, IReservationService rezervationService, ICommentService commentService)
         {

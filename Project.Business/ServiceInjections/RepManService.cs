@@ -18,6 +18,7 @@ namespace Project.Business.ServiceInjections
             services.AddScoped<IAboutService, AboutManager>();
             services.AddScoped<ICommentService, CommentManager>();
             services.AddScoped<IContactService, ContactManager>();
+            services.AddScoped<IContactMeService, ContactMeManager>();
             services.AddScoped<IFeatureService, FeatureManager>();
             services.AddScoped<IGuideService, GuideManager>();
             services.AddScoped<INewsletterService, NewsletterManager>();
@@ -35,6 +36,7 @@ namespace Project.Business.ServiceInjections
             services.AddScoped<IAboutDal, EFAboutDal>();
             services.AddScoped<ICommentDal, EFCommentDal>();
             services.AddScoped<IContactDal, EFContactDal>();
+            services.AddScoped<IContactMeDal, EFContactMeDal>();
             services.AddScoped<IFeatureDal, EFFeatureDal>();
             services.AddScoped<IGuideDal, EFGuideDal>();
             services.AddScoped<INewsletterDal, EFNewsletterDal>();

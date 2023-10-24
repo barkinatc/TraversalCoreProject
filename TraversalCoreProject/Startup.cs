@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Project.Business.ServiceInjections;
-using Project.DAL.Concrete;
+using Project.DAL.Context;
 using Project.ENTITIES.Concrete;
 using TraversalCoreProject.Areas.Admin.Models;
 using TraversalCoreProject.Custom;
@@ -26,9 +26,9 @@ namespace TraversalCoreProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<AdminMailRequestVM>(Configuration.GetSection("EmailConfiguration"));
-            services.AddDbContext<Context>();
+            services.AddDbContext<MyContext>();
 
-            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>();
+            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<MyContext>().AddErrorDescriber<CustomIdentityValidator>();
             services.AddControllersWithViews();
 
             services.AddRepManServices();

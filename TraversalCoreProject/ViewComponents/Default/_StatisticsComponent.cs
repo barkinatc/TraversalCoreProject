@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Project.DAL.Concrete;
+using Project.DAL.Context;
 using System.Linq;
 
 namespace TraversalCoreProject.ViewComponents.Default
@@ -8,7 +8,7 @@ namespace TraversalCoreProject.ViewComponents.Default
     {
         public IViewComponentResult Invoke()
         {
-            using Context c = new Context();
+            using MyContext c = new MyContext();
             ViewBag.v1 = c.Destinations.Count();
             ViewBag.v2 = c.Guides.Count();
             ViewBag.v3 = "200";
