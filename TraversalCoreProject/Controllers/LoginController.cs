@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Project.ENTITIES.Concrete;
 using System.Threading.Tasks;
-using TraversalCoreProject.ViewModels;
+using Project.VM.ViewModels;
 
 namespace TraversalCoreProject.Controllers
 {

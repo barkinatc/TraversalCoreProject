@@ -5,7 +5,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-using TraversalCoreProject.ViewModels;
+using Project.VM.ViewModels;
 
 namespace TraversalCoreProject.Areas.Member.Controllers
 {

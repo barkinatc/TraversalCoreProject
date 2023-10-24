@@ -1,6 +1,6 @@
 ﻿namespace TraversalCoreProject.Areas.Admin.Models
 {
-    public class MailRequestVM
+    public class AdminMailRequestVM
     {
 
         public string Name { get; set; }

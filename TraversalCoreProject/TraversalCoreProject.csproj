@@ -28,6 +28,7 @@
     <ProjectReference Include="..\Project.Business\Project.Business.csproj" />
     <ProjectReference Include="..\Project.DAL\Project.DAL.csproj" />
     <ProjectReference Include="..\Project.ENTITIES\Project.ENTITIES.csproj" />
+    <ProjectReference Include="..\Project.VM\Project.VM.csproj" />
   </ItemGroup>
 
   <ItemGroup>

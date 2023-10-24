@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TraversalCoreProject.ViewModels
+namespace Project.VM.ViewModels
 {
     public class UserRegisterVM
     {

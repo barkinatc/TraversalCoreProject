@@ -2,7 +2,7 @@
 using Project.Business.Abstract;
 using System.Collections.Generic;
 using System.Linq;
-using TraversalCoreProject.ViewModels;
+using Project.VM.ViewModels;
 
 namespace TraversalCoreProject.ViewComponents.Default
 {

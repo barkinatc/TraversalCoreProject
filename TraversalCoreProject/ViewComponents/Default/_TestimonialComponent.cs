@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project.Business.Abstract;
 using System.Linq;
-using TraversalCoreProject.ViewModels;
+using Project.VM.ViewModels;
 
 namespace TraversalCoreProject.ViewComponents.Default
 {

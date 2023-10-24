@@ -1,4 +1,4 @@
-﻿namespace TraversalCoreProject.ViewModels
+﻿namespace Project.VM.ViewModels
 {
     public class SubAboutVM
     {

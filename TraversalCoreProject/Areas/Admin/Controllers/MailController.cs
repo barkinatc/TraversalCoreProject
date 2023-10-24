@@ -10,9 +10,9 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
     [Area("Admin")]
     public class MailController : Controller
     {
-        private readonly IOptions<MailRequestVM> _emailConfig;
+        private readonly IOptions<AdminMailRequestVM> _emailConfig;
 
-        public MailController(IOptions<MailRequestVM> emailConfig)
+        public MailController(IOptions<AdminMailRequestVM> emailConfig)
         {
             _emailConfig = emailConfig;
         }
@@ -22,7 +22,7 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult SendMail(MailRequestVM p)
+        public IActionResult SendMail(AdminMailRequestVM p)
         {
             MimeMessage mimeMessage = new MimeMessage();
 

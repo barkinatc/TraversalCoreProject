@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
+using Microsoft.AspNetCore.Http;
 
-namespace TraversalCoreProject.ViewModels
+namespace Project.VM.ViewModels
 {
     public class UserEditVM
     {

@@ -1,12 +1,13 @@
-﻿namespace TraversalCoreProject.ViewModels
+﻿namespace Project.VM.ViewModels
 {
-    public class CommentVM
+    public class AddCommentPartialVM
     {
         public int ID { get; set; }
 
         public string CommentUser { get; set; }
         public string CommentContent { get; set; }
         public int DestinationID { get; set; }
+        public int AppUserID { get; set; }
 
         public string CommentReply { get; set; }
 
