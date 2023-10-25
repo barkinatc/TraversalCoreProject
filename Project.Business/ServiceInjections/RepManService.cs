@@ -27,6 +27,7 @@ namespace Project.Business.ServiceInjections
             services.AddScoped<ISubAboutService, SubAboutManager>();
             services.AddScoped<ITestimonialService, TestimonialManager>();
             services.AddScoped<IAppUserService, AppUserManager>();
+            services.AddScoped<IAnnouncementService, AnnouncementManager>();
             //AddScopedEf
 
             services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
@@ -45,6 +46,7 @@ namespace Project.Business.ServiceInjections
             services.AddScoped<ITestimonialDal, EFTestimonialDal>();
             services.AddScoped<ISubAboutDal, EFSubAboutDal>();
             services.AddScoped<IAppUserDal, EFAppUserDal>();
+            services.AddScoped<IAnnouncementDal, EFAnnouncementDal>();
 
 
         }

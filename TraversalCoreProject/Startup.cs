@@ -1,3 +1,5 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,7 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Project.Business.ServiceInjections;
+using Project.Business.ValidationRules;
 using Project.DAL.Context;
+using Project.DTO.DTOs.AnnouncementDTOs;
 using Project.ENTITIES.Concrete;
 using TraversalCoreProject.Areas.Admin.Models;
 using TraversalCoreProject.Custom;
@@ -25,11 +29,16 @@ namespace TraversalCoreProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup));
+            services.AddTransient<IValidator<AnnouncementAddDTO>,AnnouncementValidator>();
+            services.AddControllersWithViews().AddFluentValidation();
+
+
             services.Configure<AdminMailRequestVM>(Configuration.GetSection("EmailConfiguration"));
             services.AddDbContext<MyContext>();
 
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<MyContext>().AddErrorDescriber<CustomIdentityValidator>();
-            services.AddControllersWithViews();
+            //services.AddControllersWithViews();
 
             services.AddRepManServices();
             services.AddMvc(Configuration =>
