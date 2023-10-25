@@ -14,7 +14,7 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
     public class AnnouncementController : Controller
     {
        private readonly IAnnouncementService _announcementService;
-      private readonly  IMapper _mapper;
+       private readonly  IMapper _mapper;
 
         public AnnouncementController(IAnnouncementService announcementService, IMapper mapper)
         {
@@ -41,12 +41,30 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
 
         public   IActionResult AddAnnouncement()
         {
+
             return View();
         }
         [HttpPost]
-        public IActionResult AddAnnouncement(string x)
+        public IActionResult AddAnnouncement(AdminAnnouncementVM p)
         {
             return View();
         }
+
+        [HttpGet]
+
+        public IActionResult UpdateAnnouncement(int id)
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult UpdateAnnouncement(AdminAnnouncementVM p)
+        {
+            return View();
+        }
+        public IActionResult DeleteAnnouncement(int id)
+        {
+            return View();
+        }
+
     }
 }

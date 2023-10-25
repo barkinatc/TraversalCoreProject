@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.Business", "Project
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.ENTITIES", "Project.ENTITIES\Project.ENTITIES.csproj", "{60669320-CE04-40C7-BCBF-4689F8054CFD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.DTO", "Project.DTO\Project.DTO.csproj", "{86EEE55F-3933-47AB-8171-BB4346B32A00}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{19F114C4-7CB2-4285-9CE0-25DAEA41ED85}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
@@ -20,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.VM", "Project.VM\Project.VM.csproj", "{E86134DB-23C6-4E1C-AB65-E01CEF52B47A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.MAP", "Project.MAP\Project.MAP.csproj", "{F5F5D604-9494-4584-B127-C55CC0A783E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.MAP", "Project.MAP\Project.MAP.csproj", "{F5F5D604-9494-4584-B127-C55CC0A783E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,10 +42,6 @@ Global
 		{60669320-CE04-40C7-BCBF-4689F8054CFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60669320-CE04-40C7-BCBF-4689F8054CFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60669320-CE04-40C7-BCBF-4689F8054CFD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{86EEE55F-3933-47AB-8171-BB4346B32A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{86EEE55F-3933-47AB-8171-BB4346B32A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{86EEE55F-3933-47AB-8171-BB4346B32A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{86EEE55F-3933-47AB-8171-BB4346B32A00}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E86134DB-23C6-4E1C-AB65-E01CEF52B47A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E86134DB-23C6-4E1C-AB65-E01CEF52B47A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E86134DB-23C6-4E1C-AB65-E01CEF52B47A}.Release|Any CPU.ActiveCfg = Release|Any CPU
