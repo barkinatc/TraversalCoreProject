@@ -12,15 +12,26 @@
         <td>Başlık</td>
         <td>İçerik</td>
         <td>Oluşturulma Tarihi</td>
+        <td>Sil</td>
+        <td>Güncelle</td>
+        <td>Detaylar</td>
 
     </tr>
     @foreach (var item in Model)
     {
-<tr>
-    <td>@item.Title</td>
-    <td>@item.Content</td>
-    <td>@item.CreateDate</td>
-</tr>
+        <tr>
+            <td>@item.Title</td>
+            <td>@item.Content</td>
+            <td>@item.CreateDate</td>
+            <td><a href="/Admin/Announcement/DeleteAnnouncement/@item.ID" class="btn btn-outline-danger">Sil</a></td>
+
+
+
+            <td><a href="/Admin/Announcement/UpdateAnnouncement/@item.ID" class="btn btn-outline-warning">Güncelle</a></td>
+            <td><a target="_blank" href="/Announcement/AnnouncementDetail/@item.ID" class="btn btn-outline-dark">Detay Gör</a></td>
+
+        </tr>
     }
 </table>
+<a target="_blank" class="btn btn-outline-primary" href="/Admin/Announcement/AddAnnouncement">Yeni Duyuru Ekle</a>
 

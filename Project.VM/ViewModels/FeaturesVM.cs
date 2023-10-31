@@ -2,7 +2,7 @@
 {
     public class FeaturesVM
     {
-        public int ID { get; set; }
+        
         public string CreatedDate { get; set; }
         public string Status { get; set; }
 

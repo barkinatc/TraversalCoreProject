@@ -19,9 +19,9 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
 
         public IActionResult ListComments()
         {
-            AdminCommentPageListVM listVM = new AdminCommentPageListVM();
+            
             var commentList = _commentService.TGetCommentsWithDestinations();
-            List<AdminCommentVM> comments = commentList.Where(x => x.Status != Project.ENTITIES.Enums.DataStatus.Deleted).Select(x => new AdminCommentVM
+            List<AdminCommentVM> comments = commentList.Where(x=> x.Status != Project.ENTITIES.Enums.DataStatus.Deleted).Select(x => new AdminCommentVM
             {
                 ID = x.ID,
 
@@ -35,15 +35,15 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
 
 
             }).ToList();
-            listVM.Comments = comments;
-            return View(listVM);
+            
+            return View(comments);
         }
         public IActionResult DeleteComment(int id)
         {
             var comment = _commentService.TFind(id);
             if (comment != null)
             {
-                _commentService.TDestroy(comment);
+                _commentService.TDelete(comment);
                 TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
 
                 return Redirect("/Admin/Comment/ListComments");
@@ -78,6 +78,26 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
             ModelState.AddModelError("Hata", "Islem basarisiz olmustur.");
 
             return Redirect("/Admin/Comment/ListComments");
+        }
+        public IActionResult ListDeletedComments()
+        {
+            var commentList = _commentService.TGetCommentsWithDestinations();
+            List<AdminCommentVM> comments = commentList.Where(x => x.Status == Project.ENTITIES.Enums.DataStatus.Deleted).Select(x => new AdminCommentVM
+            {
+                ID = x.ID,
+
+                DestinationID = x.DestinationID,
+                DestinationName = x.Destination.City,
+                CommentContent = x.CommentContent,
+                CommentUser = x.CommentUser,
+                CreatedDate = x.CreatedDate.ToString(),
+                Status = x.Status.ToString(),
+                CommentReply = x.CommentReply
+
+
+            }).ToList();
+
+            return View(comments);
         }
     }
 }

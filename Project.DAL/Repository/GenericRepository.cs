@@ -95,6 +95,7 @@ namespace Project.DAL.Repository
         public List<T> GetFirstDatas(int number)
         {
             using var c = new MyContext();
+            
             return c.Set<T>().OrderBy(x => x.CreatedDate).Take(number).ToList();
         }
 

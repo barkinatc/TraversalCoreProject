@@ -13,6 +13,7 @@ namespace Project.Business.ServiceInjections
         {
             //Addscoped
             services.AddScoped(typeof(IGenericService<>), typeof(BaseManager<>));
+
             services.AddScoped<IDestinationService, DestinationManager>();
             services.AddScoped<IAbout2Service, About2Manager>();
             services.AddScoped<IAboutService, AboutManager>();

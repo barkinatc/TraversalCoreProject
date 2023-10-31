@@ -3,9 +3,11 @@ using Project.Business.Abstract;
 using System.Collections.Generic;
 using System.Linq;
 using Project.VM.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TraversalCoreProject.Controllers
 {
+    [AllowAnonymous]
     public class DestinationController : Controller
     {
         // DestinationManager destinationManager = new DestinationManager(new EFDestinationDal());

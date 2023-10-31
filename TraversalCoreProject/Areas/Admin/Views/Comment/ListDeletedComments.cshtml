@@ -1,11 +1,10 @@
-﻿
-@model List<AdminCommentVM>
+﻿@model List<AdminCommentVM>
 @{
-    ViewData["Title"] = "ListComments";
+    ViewData["Title"] = "ListDeletedComments";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Sitede Yapılan Yorumlar</h1>
+<h1>Sitede Yapılan Eski Yorumlar</h1>
 
 <table class=" table table-flush-spacing">
     <tr>
@@ -15,8 +14,7 @@
         <td>Nezaman Yapmış </td>
         <td>Yorum Cevap </td>
 
-        <td>Sil</td>
-        <td>Yanıtla</td>
+      
     </tr>
     @foreach (var item in Model)
     {
@@ -34,12 +32,11 @@
                 <th>@item.CommentReply</th>
             }
 
-            <th><a href="/Admin/Comment/DeleteComment/@item.ID" class="btn btn-outline-danger">Sil</a></th>
-            <th><a href="/Admin/Comment/ReplyComment/@item.ID" class="btn btn-outline-warning">Yanıtla</a></th>
+          
         </tr>
     }
 </table>
-<a  class="btn btn-outline-primary" href="/Admin/Comment/ListDeletedComments">Silinmiş Yorumları Göster</a>
+<a class="btn btn-outline-primary" href="/Admin/Comment/ListComments">Geri Dön</a>
 
 @if (!ViewData.ModelState.IsValid)
 {

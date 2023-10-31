@@ -19,22 +19,24 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
 
         public IActionResult ListDestinations()
         {
-            AdminDestinationPageListVM listVM = new AdminDestinationPageListVM();
+            AdminDestinationPageListVM listVM = new AdminDestinationPageListVM {
+                Destinations = _destinationService.TWhere(x => x.Status != Project.ENTITIES.Enums.DataStatus.Deleted).Select(x => new AdminDestinationVM
+                {
+                    ID = x.ID,
+                    City = x.City,
+                    DayNight = x.DayNight,
+                    Capacity = x.Capacity,
+                    CreatedDate = x.CreatedDate.ToString(),
+                    Description = x.Description,
+                    Price = x.Price,
+                    Status = x.Status.ToString()
 
-            List<AdminDestinationVM> destinations = _destinationService.TWhere(x => x.Status != Project.ENTITIES.Enums.DataStatus.Deleted).Select(x => new AdminDestinationVM
-            {
-                ID = x.ID,
-                City = x.City,
-                DayNight = x.DayNight,
-                Capacity = x.Capacity,
-                CreatedDate = x.CreatedDate.ToString(),
-                Description = x.Description,
-                Price = x.Price,
-                Status = x.Status.ToString()
 
+                }).ToList()
+            };
 
-            }).ToList();
-            listVM.Destinations = destinations;
+            
+            
             return View(listVM);
             //var values = _destinationManager.TGetList();
 
@@ -110,7 +112,7 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
 
         public IActionResult DeleteDestination(int id)
         {
-            _destinationService.TDestroy(_destinationService.TFind(id));
+            _destinationService.TDelete(_destinationService.TFind(id));
             TempData["SuccessMessage"] = "Islem basariyla gerceklesmistir.";
             return Redirect("/Admin/Destination/ListDestinations");
         }

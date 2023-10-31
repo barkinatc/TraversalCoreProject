@@ -1,6 +1,7 @@
-﻿using AutoMapper;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using Project.Business.Abstract;
+using Project.ENTITIES.Concrete;
 using Project.VM.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -14,18 +15,18 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
     public class AnnouncementController : Controller
     {
        private readonly IAnnouncementService _announcementService;
-       private readonly  IMapper _mapper;
+       
 
-        public AnnouncementController(IAnnouncementService announcementService, IMapper mapper)
+        public AnnouncementController(IAnnouncementService announcementService)
         {
             _announcementService = announcementService;
-            _mapper = mapper;
+            
         }
 
         public IActionResult ListAnnouncements()
         {
 
-            List<AdminAnnouncementVM> values = _announcementService.TGetList().Select(x=> new AdminAnnouncementVM 
+            List<AdminAnnouncementVM> values = _announcementService.TGetList().Where(x=>x.Status != Project.ENTITIES.Enums.DataStatus.Deleted).Select(x=> new AdminAnnouncementVM 
             {
             ID =x.ID,
             Title =x.Title,
@@ -47,24 +48,51 @@ namespace TraversalCoreProject.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddAnnouncement(AdminAnnouncementVM p)
         {
-            return View();
+            Announcement announcement = new Announcement
+            {
+                Content =p.Content,
+                Title =p.Title
+            };
+            _announcementService.TAdd(announcement); 
+            return Redirect("Admin/Announcement/ListAnnouncements");
         }
 
         [HttpGet]
 
         public IActionResult UpdateAnnouncement(int id)
         {
-            return View();
+            AdminAnnouncementVM annoncement = _announcementService.TWhere(x => x.ID == id).Select(x => new AdminAnnouncementVM
+            {
+                ID = x.ID,
+                Content = x.Content,
+                Title = x.Title
+            }).FirstOrDefault();
+
+            return View(annoncement);
         }
         [HttpPost]
         public IActionResult UpdateAnnouncement(AdminAnnouncementVM p)
         {
-            return View();
+            Announcement toBeUpdated = _announcementService.TFind(p.ID);
+            toBeUpdated.Title = p.Title;
+            toBeUpdated.Content = p.Content;
+
+            _announcementService.TUpdate(toBeUpdated);
+                
+            return Redirect("/Admin/Announcement/ListAnnouncements");
+
         }
         public IActionResult DeleteAnnouncement(int id)
         {
-            return View();
+            _announcementService.TDelete(_announcementService.TFind(id));
+            return Redirect("/Admin/Announcement/ListAnnouncements");
+
         }
+        //public IActionResult AnnouncementDetail(int id)
+        //{
+
+        //    return View();
+        //}
 
     }
 }
