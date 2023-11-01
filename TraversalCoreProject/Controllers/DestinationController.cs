@@ -43,7 +43,10 @@ namespace TraversalCoreProject.Controllers
                 Image = x.Image,
                 Price = x.Price,
                 Details1 = x.Details1,
-                Details2 = x.Details2
+                Details2 = x.Details2,
+                CoverImage= x.CoverImage,
+                Image2 =x.Image2,
+                DayNight =x.DayNight
 
             }).FirstOrDefault();
             ViewBag.i = id;

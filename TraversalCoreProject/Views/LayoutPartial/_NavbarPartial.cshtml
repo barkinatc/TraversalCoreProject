@@ -1,15 +1,16 @@
-﻿<header id="site-header" class="fixed-top">
+﻿<!--Navbar Partial-->
+<header id="site-header" class="fixed-top">
     <div class="container">
         <nav class="navbar navbar-expand-lg stroke">
             <h1>
                 <a class="navbar-brand mr-lg-5" href="/default/index">
-                    
+
                 </a>
             </h1>
             <!-- if logo is image enable this
-            <a class="navbar-brand" href="#index.html">
-                <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-            </a> -->
+    <a class="navbar-brand" href="#index.html">
+        <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+    </a> -->
             <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
                     data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -24,24 +25,44 @@
                         <a class="nav-link" href="/Default/Index">Ana Sayfa <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="about.html">Hakkımızda</a>
+                        <a class="nav-link" href="/about/index">Hakkımızda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/Destination/Index">Rotalar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pricing.html">Rehberlerimiz</a>
+                        <a class="nav-link" href="/guide/index">Rehberlerimiz</a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a class="nav-link" href="/contact/index">İletişim</a>
                     </li>
 
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a href="/member/profile/myprofile" class="nav-link">Profilim</a>
+                        </li>
+                    }
+
                 </ul>
             </div>
+            <!-- Giriş Yap/Çıkış Yap Butonu -->
             <div class="d-lg-block d-none">
-                <a href="/login/signin" class="btn btn-style btn-secondary">Üye Girişi</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <form method="post" asp-controller="Login" asp-action="Logout">
+                        <button type="submit" class="btn btn-style btn-secondary">Çıkış Yap</button>
+                    </form>
+                    
+                }
+                else
+                {
+                    <a href="/login/signin" class="btn btn-style btn-secondary">Giriş Yap</a>
+                }
             </div>
+
+           
             <!-- toggle switch for light and dark theme -->
             <div class="mobile-position">
                 <nav class="navigation">

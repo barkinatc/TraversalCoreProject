@@ -50,6 +50,7 @@ namespace TraversalCoreProject.Controllers
             }
             return View();
         }
+     
         [HttpGet]
         public IActionResult SignIn()
         {
@@ -63,7 +64,8 @@ namespace TraversalCoreProject.Controllers
                 var result = await _signInManager.PasswordSignInAsync(p.UserName, p.Password, false, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("MyProfile", "Profile", new { area = "Member" });
+                    return RedirectToAction("Index", "Default");
+
                 }
                 else
                 {
@@ -72,5 +74,13 @@ namespace TraversalCoreProject.Controllers
             }
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("SignIn", "Login");
+        }
+
     }
 }
