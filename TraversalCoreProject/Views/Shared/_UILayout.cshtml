@@ -5,20 +5,35 @@
 
 <!doctype html>
 <html lang="zxx">
- 
+
 @await Html.PartialAsync("/Views/LayoutPartial/_HeaderPartial.cshtml")
 <body>
- 
-@await Html.PartialAsync("/Views/LayoutPartial/_NavbarPartial.cshtml")
 
-@RenderBody();
- 
-@await Html.PartialAsync("/Views/LayoutPartial/_FooterPartial.cshtml")
- 
-@await Html.PartialAsync("/Views/LayoutPartial/_ScriptsPartial.cshtml")
+    @await Html.PartialAsync("/Views/LayoutPartial/_NavbarPartial.cshtml")
+
+    @RenderBody();
+
+    @await Html.PartialAsync("/Views/LayoutPartial/_FooterPartial.cshtml")
+
+    @await Html.PartialAsync("/Views/LayoutPartial/_ScriptsPartial.cshtml")
 
 
 </body>
 
 </html>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmLogout() {
+        Swal.fire({
+            title: 'Çıkış yapmak istediğinize emin misiniz?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Evet, çıkış yap!',
+            cancelButtonText: 'İptal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('logoutForm').submit();
+            }
+        });
+    }
+</script>

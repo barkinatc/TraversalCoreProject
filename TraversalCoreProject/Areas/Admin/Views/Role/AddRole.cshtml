@@ -1,0 +1,17 @@
+﻿@model AdminAppRoleVM
+@{
+    ViewData["Title"] = "AddRole";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Role Ekleme Sayfası</h1>
+
+<form method="post">
+    <label>Rol İsmi</label>
+    <div>
+        <input type="text" class=" form-control" asp-for="Name"/>
+    </div>
+    <div>
+        <button class="btn btn-outline-primary" type="submit">Ekle</button>
+    </div>
+</form>

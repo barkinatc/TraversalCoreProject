@@ -8,9 +8,9 @@
                 </a>
             </h1>
             <!-- if logo is image enable this
-    <a class="navbar-brand" href="#index.html">
-        <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-    </a> -->
+            <a class="navbar-brand" href="#index.html">
+                <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+            </a> -->
             <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
                     data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -51,10 +51,11 @@
             <div class="d-lg-block d-none">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <form method="post" asp-controller="Login" asp-action="Logout">
-                        <button type="submit" class="btn btn-style btn-secondary">Çıkış Yap</button>
-                    </form>
-                    
+                <form id="logoutForm" method="post" asp-controller="Login" asp-action="Logout">
+                    <button type="button" class="btn btn-style btn-secondary" onclick="confirmLogout()">Çıkış Yap</button>
+                </form>
+
+
                 }
                 else
                 {
@@ -62,7 +63,7 @@
                 }
             </div>
 
-           
+
             <!-- toggle switch for light and dark theme -->
             <div class="mobile-position">
                 <nav class="navigation">
@@ -81,3 +82,4 @@
         </nav>
     </div>
 </header>
+

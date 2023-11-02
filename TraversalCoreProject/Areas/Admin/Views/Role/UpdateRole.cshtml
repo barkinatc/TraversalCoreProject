@@ -1,0 +1,17 @@
+﻿@model AdminAppRoleVM
+@{
+    ViewData["Title"] = "UpdateRole";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Role Güncelleme Sayfası</h1>
+
+<form method="post">
+    <label>Rol İsmi</label>
+    <div>
+        <input type="text" class=" form-control" asp-for="Name" />
+    </div>
+    <div>
+        <button class="btn btn-outline-warning" type="submit">Güncelle</button>
+    </div>
+</form>

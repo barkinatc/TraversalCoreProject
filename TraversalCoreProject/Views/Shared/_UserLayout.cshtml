@@ -14,7 +14,7 @@
     @await Html.PartialAsync("/Views/MemberLayoutPartial/_SideNavbarPartial.cshtml")
 
     <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
-       
+
         @await Html.PartialAsync("/Views/MemberLayoutPartial/_NavbarPartial.cshtml")
 
         <div class="container-fluid py-4">
@@ -30,3 +30,44 @@
 </body>
 
 </html>
+<script>
+
+    function logout(event) {
+        // Sayfanın yeniden yüklenmesini önleyin
+        event.preventDefault();
+
+     
+        Swal.fire({
+            title: 'Çıkış yapmak istediğinize emin misiniz?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Evet, çıkış yap!',
+            cancelButtonText: 'İptal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+               
+                postLogout();
+            }
+        });
+    }
+
+    function postLogout() {
+        
+        var form = document.createElement('form');
+        form.method = 'post';
+        form.action = '/Login/logout'; 
+
+        
+        var csrfToken = document.createElement('input');
+        csrfToken.type = 'hidden';
+        csrfToken.name = '_csrf'; 
+        csrfToken.value = 'YOUR_CSRF_TOKEN'; 
+        form.appendChild(csrfToken);
+
+       
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+
+    
